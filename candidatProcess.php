@@ -62,4 +62,4 @@ catch(Exception $e) {
 
 }
 ?>
-<form action="index.php" > <input type="submit" name="submit" value="HomePage"></form>
+<form action="_index.php" > <input type="submit" name="submit" value="HomePage"></form>

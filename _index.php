@@ -34,13 +34,19 @@
 
          <form action="mission.html">
             <p>
-                <input type="submit" value="Ajoutez Mission">
+                <input type="submit" value="Ajouter Mission">
             </p>
         </form>
 
-        <form action="missionProcess.php">
+        <form action="mission.php">
             <p>
                 <input type="submit" value="Missions">
+            </p>
+        </form>
+
+        <form action="competences.html">
+            <p>
+                <input type="submit" value="Ajouter Competences">
             </p>
         </form>
 

@@ -1,19 +1,12 @@
 <?php 
 
+require 'fonctions/fonctions.php';
+
 try {   
 
-    $bdd = new PDO('mysql:host=localhost;port=3307;dbname=interim_it;charset=utf8', 'root', '');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $ID_Client = $bdd->query('SELECT ID_Client FROM clients');
-    $idTmp = 1;
-    
-    while ($data = $ID_Client->fetch()) {
-        $idTmp = intval($data['ID_Client']) + 1;
-    }
+    $bdd = dbConnexion();
     
     if (isset($_POST['submit'])) {
-        $id = (String) $idTmp;
         $nom = $_POST['nomClient'];
         $prenom = $_POST['prenomClient'];
         $type = $_POST['radio'];
@@ -29,13 +22,12 @@ try {
     }
     
 
-    echo "value = " . $id . "<br />";
-    echo "type = " . gettype ($id) . "<br />";
+    echo "value = " . $nom . "<br />";
+    echo "type = " . gettype ($nom) . "<br />";
 
-    $sql = $bdd->prepare('INSERT INTO clients (ID_Client, Nom, Prenom, Type, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb)
-    VALUES (:id, :nom, :prenom, :type, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb)');
+    $sql = $bdd->prepare('INSERT INTO clients (Nom, Prenom, Type, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb)
+    VALUES (:nom, :prenom, :type, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb)');
     $sql->execute(array(
-        'id' => $id, 
         'nom' => $nom,
         'prenom' => $prenom,
         'type' => $type,

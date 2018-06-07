@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Formulaire Mission</title>
+    </head>
+
+    <body>
+    	<form method="post" action="missionProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
+
+    		<h1>Formulaire Mission</h1>
+            <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
+            <p>
+                <strong> Type de mission </strong>
+                <input type="radio" name="radio" value="CDD"> CDD
+                <input type="radio" name="radio" value="CDI"> CDI<br>
+            </p>
+
+            <p><label> <strong>Lieu : </strong></label> <input type="text" name="lieu" placeholder="Lieu..."></p>
+
+            <p><label> <strong>Date de debut :</strong> </label> <input type="date" name="dateDebut" value="dateDebut"></p>
+            <p><label> Date de fin : </label><input type="date" name="dateFin" value="dateFin"></p>
+
+    		<p><label> <strong>Effectif requis : </strong></label> <input type="value" name="effectif" placeholder="Effectif requis..."></p>
+    		<p><label> <strong>Description : </strong></label><br /><textarea type="text" name="description" placeholder="Description..."></textarea> </p>
+
+            <p><label> Remuneration :  </label> <input type="value" name="remuneration" placeholder="Remuneration..."></p>
+
+    		<p><input type="submit" name="submit" value="Valider le formulaire"/>
+    		<input type="reset" value="Remettre à 0"></p>
+    	</form>
+    </body>      
+</html>

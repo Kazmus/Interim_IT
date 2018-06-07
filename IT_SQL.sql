@@ -19,8 +19,9 @@ CREATE TABLE Candidats(
         Pays              Varchar (50) NOT NULL ,
         Tel               Varchar (25) ,
         Gsm               Varchar (25) ,
-        E_Mail            Varchar (50) NOT NULL,
-        SiteWeb           Varchar (100)
+        E_Mail            Varchar (50) NOT NULL ,
+        SiteWeb           Varchar (100) ,
+        Mot_de_Passe      Varchar (50) NOT NULL
 	,CONSTRAINT Candidats_PK PRIMARY KEY (ID_Info)
 )ENGINE=InnoDB;
 
@@ -64,9 +65,10 @@ CREATE TABLE Clients(
         Ville           Varchar (50) NOT NULL ,
         Pays            Varchar (50) NOT NULL ,
         Tel             Varchar (25) ,
-        Gsm             Varchar (25) NOT NULL ,
+        Gsm             Varchar (25) ,
         E_Mail          Varchar (50) NOT NULL ,
-        SiteWeb         Varchar (50) 
+        SiteWeb         Varchar (50) ,
+        Mot_de_Passe      Varchar (50) NOT NULL
 	,CONSTRAINT Clients_PK PRIMARY KEY (ID_Client)
 )ENGINE=InnoDB;
 

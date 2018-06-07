@@ -20,13 +20,14 @@ try {
         $gsm = $_POST['gsmCandidat'];
         $mail = $_POST['emailCandidat'];
         $siteWeb = $_POST['siteCandidat'];
+        $password = $_POST['password'];
     }
     
-    echo "value = " . $genre . "<br />";
-    echo "type = " . gettype ($genre) . "<br />";
+    echo "value = " . $password . "<br />";
+    echo "type = " . gettype ($password) . "<br />";
 
-    $sql = $bdd->prepare('INSERT INTO candidats (Nom, Prenom, Genre, Date_de_Naissance, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb)
-    VALUES (:nom, :prenom, :genre, :naissance, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb)');
+    $sql = $bdd->prepare('INSERT INTO candidats (Nom, Prenom, Genre, Date_de_Naissance, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb, Mot_de_Passe)
+    VALUES (:nom, :prenom, :genre, :naissance, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb, :password)');
     $sql->execute(array(
         'nom' => $nom,
         'prenom' => $prenom,
@@ -40,7 +41,8 @@ try {
         'tel' => $tel,
         'gsm' => $gsm,
         'mail' => $mail,
-        'siteWeb' => $siteWeb
+        'siteWeb' => $siteWeb,
+        'password' => $password
         ));
 
     echo "New record created succesfully";

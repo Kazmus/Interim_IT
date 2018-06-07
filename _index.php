@@ -8,6 +8,14 @@
         <h1>INTERIM IT</h1>
         <p>Page d'accueill</p>
 
+        <form action="connexion.php" method="post">
+            <p>
+                <input type="text" name="user" placeholder="Votre mail...">
+                <input type="password" name="password" placeholder="Mot de passe...">
+                <input type="submit" name="submit" value="Connexion">
+            </p>
+        </form>
+
     	<form action="candidat.html">
     		<p>
     			<input  type="submit" value="Insciption Candidat">

@@ -3,7 +3,7 @@
 require 'fonctions/fonctions.php';
 
 	try {
-		$bdd = bdConnexion();
+		$bdd = dbConnexion();
 
 		$table = $bdd->query('SELECT * FROM candidats');
 

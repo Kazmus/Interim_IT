@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+<?php require 'fonctions/fonctions.php' ?>
+
 <html>
 
     <head>
@@ -26,8 +28,6 @@
     		
     		<p><label> <strong>Code Postal : </strong> </label> <input id="code Postal" type="value" name="cpClient" placeholder="CP..."> 
     		   <label> <strong>Ville : </strong> </label> <input id="ville" type="text" name="villeClient" placeholder="Ville..."> </p>
-    		
-    		<p><label> <strong>Pays : </strong> </label>
 
             <?php selectionPays() ?>
     		

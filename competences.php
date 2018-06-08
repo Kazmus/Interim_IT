@@ -17,6 +17,7 @@ require 'fonctions/fonctions.php';
 				<?php echo "Permis : " . $data['Permis']; ?><br />
 				<?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
 				<?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
+				<?php echo "Candidat Numero : " . $data['ID_Info']; ?>
 			</p>
 			<?php
 		}

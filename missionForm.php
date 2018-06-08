@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8" />
@@ -11,11 +11,12 @@
     		<h1>Formulaire Mission</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
             <p>
-                <strong> Type de mission </strong>
+                <strong> Type de contrat </strong>
                 <input type="radio" name="radio" value="CDD"> CDD
                 <input type="radio" name="radio" value="CDI"> CDI<br>
             </p>
 
+            <p><label> <strong>Titre : </strong></label> <input type="text" name="titre" placeholder="Nom de la mission..."></p>
             <p><label> <strong>Lieu : </strong></label> <input type="text" name="lieu" placeholder="Lieu..."></p>
 
             <p><label> <strong>Date de debut :</strong> </label> <input type="date" name="dateDebut" value="dateDebut"></p>
@@ -25,6 +26,7 @@
     		<p><label> <strong>Description : </strong></label><br /><textarea type="text" name="description" placeholder="Description..."></textarea> </p>
 
             <p><label> Remuneration :  </label> <input type="value" name="remuneration" placeholder="Remuneration..."></p>
+            <p><label> <strong>Reservation maximum : </strong></label> <input type="value" name="reservMax" placeholder="Reservation maximum..."></p>
 
     		<p><input type="submit" name="submit" value="Valider le formulaire"/>
     		<input type="reset" value="Remettre à 0"></p>

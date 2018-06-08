@@ -45,6 +45,7 @@ try {
         ));
 
     echo "New record created succesfully";
+    ?><meta http-equiv="refresh" content="4; URL=_index.php"> <h2>Retour dans 4 secondes</h2> <?php
 }
 
 catch(Exception $e) {
@@ -54,4 +55,3 @@ catch(Exception $e) {
 
 }
 ?>
-<form action="_index.php" > <input type="submit" name="submit" value="HomePage"></form>

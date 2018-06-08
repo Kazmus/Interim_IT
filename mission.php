@@ -5,7 +5,7 @@ require 'fonctions/fonctions.php';
 	try {
 		$bdd = dbConnexion();
 
-		$table = $bdd->query('SELECT * FROM missions');
+		$table = $bdd->query('SELECT * FROM missions INNER JOIN clients ON missions.ID_Client=clients.ID_Client');
 
 		while ($data = $table->fetch()) {
 			?>
@@ -18,7 +18,7 @@ require 'fonctions/fonctions.php';
 				<?php echo "Effectif requis : " . $data['Effectif_Requis'];?><br />
 				<?php echo "Description : " . $data['Description']; ?><br />
 				<?php echo "Remuneration : " . $data['Remuneration'];?><br />
-				<?php echo "Client numero : " . $data['ID_Client']; ?><br />
+				<?php echo "Client : " . $data['Nom']; ?><br />
 			</p>
 			<?php
 		}

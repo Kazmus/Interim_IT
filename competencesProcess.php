@@ -1,6 +1,7 @@
 <?php 
 
 require 'fonctions/fonctions.php';
+session_start();
 
 try {   
 
@@ -12,25 +13,27 @@ try {
         $anneeExp = $_POST['expAnnee'];
         $permis = $_POST['radio'];
         $primLang = $_POST['primaireLang'];
-        $secLang = $_POST['secondlang'];
+        $secLang = $_POST['secondLang'];
+        $idCandidat = $_SESSION['id'];
     }
     
+    echo "value = " . $idCandidat . "<br />";
+    echo "type = " . gettype ($idCandidat) . "<br />";
 
-    echo "value = " . $diplome . "<br />";
-    echo "type = " . gettype ($diplome) . "<br />";
-
-    $sql = $bdd->prepare('INSERT INTO competences (Diplome, Certification, Annee_d_experience, Permis, Langue_Primaire, Langue_Secondaire)
-    VALUES (:diplome, :certif, :anneeExp, :permis, :primLang, :secLang)');
+    $sql = $bdd->prepare('INSERT INTO competences (Diplome, Certification, Annee_d_experience, Permis, Langue_Primaire, Langue_Secondaire, ID_Info)
+    VALUES (:diplome, :certif, :anneeExp, :permis, :primLang, :secLang, :idCandidat)');
     $sql->execute(array(
         'diplome' => $diplome,
         'certif' => $certif,
         'anneeExp' => $anneeExp,
         'permis' => $permis,
         'primLang' => $primLang,
-        'secLang' => $secLang
+        'secLang' => $secLang,
+        'idCandidat' =>$idCandidat
         ));
 
     echo "New record created succesfully";
+    ?><meta http-equiv="refresh" content="4; URL=pageCandidat.php"> <h2>Retour dans 4 secondes</h2> <?php
 }
 
 catch(Exception $e) {
@@ -40,4 +43,3 @@ catch(Exception $e) {
 
 }
 ?>
-<form action="_index.php" > <input type="submit" name="submit" value="HomePage"></form>

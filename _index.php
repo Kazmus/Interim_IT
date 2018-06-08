@@ -1,3 +1,6 @@
+
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +19,7 @@
             </p>
         </form>
 
-    	<form action="candidat.html">
+    	<form action="candidatForm.php">
     		<p>
     			<input  type="submit" value="Insciption Candidat">
     		</p>
@@ -28,7 +31,7 @@
             </p>
         </form>
     
-    	<form action="client.html">
+    	<form action="clientForm.php">
     		<p>
     			<input  type="submit" value="Insciption Client">
     		</p>

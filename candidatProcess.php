@@ -15,7 +15,7 @@ try {
         $numAdresse = $_POST['numeroBatimentCandidat'];
         $cp = $_POST['cpCandidat'];
         $ville = $_POST['villeCandidat'];
-        $pays = $_POST['paysCandidat'];
+        $pays = $_POST['pays'];
         $tel = $_POST['telCandidat'];
         $gsm = $_POST['gsmCandidat'];
         $mail = $_POST['emailCandidat'];

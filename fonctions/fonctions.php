@@ -25,17 +25,21 @@ function checkConnex () {
 
 function sessionClient () {
     $bdd = dbConnexion();
-    $table = $bdd->query("SELECT ID_Client, Nom FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND Nom = '" . $_SESSION['user'] . "' ");
-    if ($table && $table->rowCount() == 1) {?>
-        <form action="pageClient.php"><p><input type="submit" value="Page Client"></p></form><?php
+    if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
+        $table = $bdd->query("SELECT ID_Client, Nom FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
+        if ($table && $table->rowCount() == 1) {?>
+            <form action="pageClient.php"><p><input type="submit" value="Page Client"></p></form><?php
+        }
     }
 }
 
 function sessionCandidat () {
     $bdd = dbConnexion();
-    $table = $bdd->query("SELECT ID_Info, Nom FROM candidats WHERE ID_Info =  '" . $_SESSION['id'] . "' AND Nom = '" . $_SESSION['user'] . "' ");
-    if ($table && $table->rowCount() == 1) {?>
-        <form action="pageCandidat.php"><p><input type="submit" value="Page Candidat"></p></form><?php
+    if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
+        $table = $bdd->query("SELECT ID_Info, Nom FROM candidats WHERE ID_Info =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
+        if ($table && $table->rowCount() == 1) {?>
+            <form action="pageCandidat.php"><p><input type="submit" value="Page Candidat"></p></form><?php
+        }
     }
 }
 
@@ -47,7 +51,8 @@ function login() {
 			if ($table && $table->rowCount() == 1) {
 				$user = $table->fetch();
 				$_SESSION['id'] = $user['ID_Client'];
-                $_SESSION['user'] = $user['Nom'];
+                $_SESSION['user'] = $user['E_Mail'];
+                $_SESSION['nom'] = $user['Nom'];
 				echo "<h1>Bienvenu sur notre site " . $user['Nom'] . '</h1><br />';
 				echo "<h2>Session numero : " . $_SESSION['id'] . "</h2>";
 				$table->closeCursor();
@@ -57,7 +62,8 @@ function login() {
 				if ($table && $table->rowCount() == 1) {
 					$user = $table->fetch();
 					$_SESSION['id'] = $user['ID_Info'];
-                    $_SESSION['user'] = $user['Nom'];
+                    $_SESSION['user'] = $user['E_Mail'];
+                    $_SESSION['nom'] = $user['Nom'];
 					echo "<h1>Bienvenu sur notre site " . $user['Nom'] . '</h1><br />';
 					echo "<h2>Session numero : " . $_SESSION['id'] . "</h2>";
 					$table->closeCursor();

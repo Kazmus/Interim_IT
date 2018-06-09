@@ -4,6 +4,6 @@
 
 <form action="missionForm.php"><p><input type="submit" value="Ajouter Mission"></p></form>
 
-<form action="mission.php"><p><input type="submit" value="Missions"></p></form>
+<form action="missionAfficher.php"><p><input type="submit" value="Missions"></p></form>
 
 <form action="deconnexion.php"><p><input type="submit" value="Deconnexion"></p></form>

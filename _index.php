@@ -4,8 +4,11 @@
 require 'fonctions/fonctions.php';
 
 session_start(); 
-echo "Session de " . $_SESSION['user'] . "</br>";
-echo 'ID_CLIENT = ' . $_SESSION['id'];
+if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
+    echo "Session de " . $_SESSION['nom'] . "</br>";
+    echo 'ID_CLIENT = ' . $_SESSION['id'];
+}
+
 ?>
 
 <html>
@@ -23,15 +26,13 @@ echo 'ID_CLIENT = ' . $_SESSION['id'];
     sessionCandidat();
     ?>
     
-    <form action="mission.php"><p><input type="submit" value="Missions"></p></form>
+    <form action="missionAfficher.php"><p><input type="submit" value="Missions"></p></form>
     
-    <form action="candidat.php"><p><input type="submit" value="Candidats"></p></form>
+    <form action="candidatAfficher.php"><p><input type="submit" value="Candidats"></p></form>
     
-    <form action="client.php"><p><input  type="submit" value="Clients"></p></form>
+    <form action="clientAfficher.php"><p><input  type="submit" value="Clients"></p></form>
 
-    <form action="competences.php"><p><input type="submit" value="Competences"></p></form>
-
-    <form action="test.php"><p><input type="submit" value="test"></p></form>
+    <form action="competencesAfficher.php"><p><input type="submit" value="Competences"></p></form>
 
 </body>
 </html>

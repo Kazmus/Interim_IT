@@ -9,6 +9,8 @@ session_start();
 
 <?php checkComp(); ?>
 
-<form action="mission.php"><p><input type="submit" value="Missions"></p></form>
+<form action="missionAfficher.php"><p><input type="submit" value="Missions"></p></form>
+
+<form action="competencesAfficher.php"><p><input type="submit" value="Competences"></p></form>
 
 <form action="deconnexion.php"><p><input type="submit" value="Deconnexion"></p></form>

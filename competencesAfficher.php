@@ -5,7 +5,7 @@ require 'fonctions/fonctions.php';
 	try {
 		$bdd = dbConnexion();
 
-		$table = $bdd->query('SELECT * FROM competences');
+		$table = $bdd->query('SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info');
 
 		while ($data = $table->fetch()) {
 			?>
@@ -17,7 +17,8 @@ require 'fonctions/fonctions.php';
 				<?php echo "Permis : " . $data['Permis']; ?><br />
 				<?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
 				<?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
-				<?php echo "Candidat Numero : " . $data['ID_Info']; ?>
+				<?php echo "Candidat Numero : " . $data['ID_Info']; ?><br />
+				<?php echo "Competences de : " . $data['Nom'] . " " . $data['Prenom'] ?>
 			</p>
 			<?php
 		}

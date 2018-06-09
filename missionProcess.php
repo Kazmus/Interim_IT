@@ -23,7 +23,7 @@ try {
     echo "value = " . $idCli . "<br />";
     echo "type = " . gettype ($idCli) . "<br />";
 
-    $sql = $bdd->prepare('INSERT INTO missions (Type, Titre, Lieu, Date_Debut, Date_Fin, Effectif_Requis, Description, Remuneration, Reservation_Max, ID_Client)
+    $sql = $bdd->prepare('INSERT INTO missions (Type_Mission, Titre, Lieu, Date_Debut, Date_Fin, Effectif_Requis, Description, Remuneration, Reservation_Max, ID_Client)
     VALUES (:type, :titre, :lieu, :dateDebut, :dateFin, :effectif, :description, :remuneration, :reservMax, :idCli)');
     $sql->execute(array(
         'type' => $type,

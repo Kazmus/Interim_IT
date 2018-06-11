@@ -21,10 +21,6 @@ try {
         $siteWeb = $_POST['siteClient'];
         $password= $_POST['password'];
     }
-    
-
-    echo "value = " . $password . "<br />";
-    echo "type = " . gettype ($password) . "<br />";
 
     $sql = $bdd->prepare('INSERT INTO clients (Nom, Prenom, Type, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb, Mot_de_Passe)
     VALUES (:nom, :prenom, :type, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb, :password)');

@@ -6,24 +6,6 @@ function dbConnexion() {
 	return $db;
 }
 
-function getVarName(&$var)
-{
-    $ret = '';
-    $tmp = $var;
-    $var = md5(uniqid(rand(), TRUE));
-
-    $key = array_keys($GLOBALS);
-    foreach ( $key as $k )
-        if ( $GLOBALS[$k] === $var )
-        {
-            $ret = $k;
-            break;
-        }
-
-        $var = $tmp;
-        return $ret;
-    }
-
 function checkConnex () {
     if (!isset($_SESSION['id'])) {?>
         <form action="connexion.php" method="post"><p>
@@ -98,13 +80,13 @@ function checkComp () {
     $bdd = dbConnexion();
     $table = $bdd->query("SELECT ID_Info FROM competences WHERE ID_Info =  '" . $_SESSION['id'] . "' ");
     if ($table && $table->rowCount() == 1) {
-        echo "Vous avez deja rajouter vos competences";
+        ?><form action="competencesForm.php"><p><input type="submit" value="Modifier Competences"></p></form><?php
     } else {
         ?><form action="competencesForm.php"><p><input type="submit" value="Ajouter Competences"></p></form><?php
     }
 }
 
-function selectionAnneeExp() {
+function selectionAnneeExpMission() {
     ?>  
     <p><label><strong> Annee d'experience ? : </strong></label>
     <select name="anneeExp"> 
@@ -115,6 +97,58 @@ function selectionAnneeExp() {
         <option value="entre 11 et 20 ans"> entre 11 et 20 ans
         <option value="21 ou plus"> 21 ou plus
     </select></p><?php
+}
+
+function selectionRemuneration() {
+    ?>  
+    <p><label><strong> Remuneration ? : </strong></label>
+    <select name="remuneration"> 
+        <option value="entre 0 et 999"> entre 0 et 999
+        <option value="entre 1000 et 1999"> entre 1000 et 1999
+        <option value="entre 2000 et 2999"> entre 2000 et 2999
+        <option value="entre 3000 et 3999"> entre 3000 et 3999
+        <option value="entre 4000 et 4999"> entre 4000 et 4999
+        <option value="5000 ou plus"> 5000 ou plus
+    </select></p><?php
+}
+
+function selectionAnneeExpComp () {
+    ?><p><label>  Annee d'experience : </label>
+                <select name="expAnnee"> 
+                    <option value="0" selected="selected">0 </option>
+                    <option value="1">1 </option>
+                    <option value="2">2 </option>
+                    <option value="3">3 </option>
+                    <option value="4">4 </option>
+                    <option value="5">5 </option>
+                    <option value="6">6 </option>
+                    <option value="7">7 </option>
+                    <option value="8">8 </option>
+                    <option value="9">9 </option>
+                    <option value="10">10 </option>
+                    <option value="11">11 </option>
+                    <option value="12">12 </option>
+                    <option value="13">13 </option>
+                    <option value="14">14 </option>
+                    <option value="15">15 </option>
+                    <option value="16">16 </option>
+                    <option value="17">17 </option>
+                    <option value="18">18 </option>
+                    <option value="18">18 </option>
+                    <option value="19">19 </option>
+                    <option value="20">20 </option>
+                    <option value="21">21 </option>
+                    <option value="22">22 </option>
+                    <option value="23">23 </option>
+                    <option value="24">24 </option>
+                    <option value="25">25 </option>
+                    <option value="26">26 </option>
+                    <option value="27">27 </option>
+                    <option value="28">28 </option>
+                    <option value="29">29 </option>
+                    <option value="30">30 </option>
+                </select>
+            </p><?php
 }
 
 function selectionLangues() {

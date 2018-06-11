@@ -70,14 +70,14 @@ CREATE TABLE Clients(
 
 CREATE TABLE Missions(
         ID_Mission      Int NOT NULL AUTO_INCREMENT,
-        Type            Varchar (20) NOT NULL ,
+        Type_Mission    Varchar (20) NOT NULL ,
         Titre           Varchar (75) NOT NULL ,
         Lieu            Varchar (50) NOT NULL ,
         Date_Debut      Date NOT NULL ,
-        Date_Fin        Date ,
+        Date_Fin        Date NOT NULL ,
         Effectif_Requis Int NOT NULL ,
         Description     Varchar (500) NOT NULL ,
-        Remuneration    Float ,
+        Remuneration    Float NOT NULL,
         Reservation_Max Int NOT NULL ,
         ID_Client       Int NOT NULL
 	,CONSTRAINT Missions_PK PRIMARY KEY (ID_Mission)

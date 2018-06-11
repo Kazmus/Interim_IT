@@ -6,6 +6,24 @@ function dbConnexion() {
 	return $db;
 }
 
+function getVarName(&$var)
+{
+    $ret = '';
+    $tmp = $var;
+    $var = md5(uniqid(rand(), TRUE));
+
+    $key = array_keys($GLOBALS);
+    foreach ( $key as $k )
+        if ( $GLOBALS[$k] === $var )
+        {
+            $ret = $k;
+            break;
+        }
+
+        $var = $tmp;
+        return $ret;
+    }
+
 function checkConnex () {
     if (!isset($_SESSION['id'])) {?>
         <form action="connexion.php" method="post"><p>
@@ -86,8 +104,21 @@ function checkComp () {
     }
 }
 
+function selectionAnneeExp() {
+    ?>  
+    <p><label><strong> Annee d'experience ? : </strong></label>
+    <select name="anneeExp"> 
+        <option value="Aucune Experience"> Aucune Experience
+        <option value="1 ou 2 ans"> 1 ou 2 ans
+        <option value="entre 3 et 5 ans"> entre 3 et 5 ans
+        <option value="entre 6 et 10 ans"> entre 6 et 10 ans
+        <option value="entre 11 et 20 ans"> entre 11 et 20 ans
+        <option value="21 ou plus"> 21 ou plus
+    </select></p><?php
+}
+
 function selectionLangues() {
-    ?>  <option value="Anglais"> Anglais
+    ?>  <option value="Anglais" selected="selected"> Anglais
         <option value="Allemand"> Allemand
         <option value="Arabe"> Arabe
         <option value="Bengali"> Bengali

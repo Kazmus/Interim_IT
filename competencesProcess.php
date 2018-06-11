@@ -34,6 +34,50 @@ try {
 
     echo "New record created succesfully";
     ?><meta http-equiv="refresh" content="4; URL=pageCandidat.php"> <h2>Retour dans 4 secondes</h2> <?php
+
+    $sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
+    $idMission = $bdd->lastInsertId();
+
+    if ($anneeExpMin == 0) {
+
+        $anneeExp = 0;
+
+        $table = $bdd->query("
+            SELECT ID_Comp
+            FROM competences 
+            WHERE Annee_d_experience='" . $anneeExp . "' AND Permis='" . $permis . "' AND (Langue_Primaire='" . $langue . "' OR Langue_Secondaire='" . $langue . "') "
+        );
+
+        while ($data = $table->fetch()) {
+            $idComp = $data['ID_Comp'];
+            $sql->execute(array(
+                'idMission' => $idMission, 
+                'idComp' => $idComp
+                
+            ));
+
+        }
+    } else {
+
+        for ($i=$anneeExpMin; $i <= $anneeExpMax; $i++) { 
+
+            $anneeExp = $i;
+
+            $table = $bdd->query("
+                SELECT ID_Comp
+                FROM competences
+                WHERE Annee_d_experience='" . $anneeExp . "' AND Permis='" . $permis . "' AND (Langue_Primaire='" . $langue . "' OR Langue_Secondaire='" . $langue . "') "
+            );
+
+            while ($data = $table->fetch()) {
+                $idComp = $data['ID_Comp'];
+                $sql->execute(array(
+                    'idMission' => $idMission, 
+                    'idComp' => $idComp
+                ));
+            }
+        }
+    }
 }
 
 catch(Exception $e) {

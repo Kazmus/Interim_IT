@@ -29,28 +29,29 @@ try {
 		if (isset($_SESSION['user']) && isset($_SESSION['id'])) {
 			$infoCheck = $bdd->query("SELECT ID_Info, E_Mail FROM candidats WHERE ID_Info =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
 			if ($infoCheck && $infoCheck->rowCount() == 1) {
-				$mission = $data['ID_Mission'];
 				?><form method="post" action="postuler.php">
-					<p><input type="submit" name="submit" value="<?php echo $mission;?>"> <--Postuler</p>
+					<p><input type="submit" name="submit" value="<?php echo $data['ID_Mission'];?>"> <--Postuler</p>
 					</form><?php
 				}
 			}
 			if (isset($_SESSION['user']) && isset($_SESSION['id'])) {
 				$clientCheck = $bdd->query("SELECT ID_Client, E_Mail FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
-				$mission = $data['ID_Mission'];
-				$autreTable = $bdd->query("
-					SELECT ca.Nom, m.ID_Client
-					FROM clients cl 
-					INNER JOIN missions m ON cl.ID_Client=m.ID_Client
-					INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission
-					INNER JOIN candidats ca ON p.ID_Info=ca.ID_Info
-					WHERE m.ID_Client= '" . $_SESSION['id'] . "' AND m.ID_Mission = '" . $data['ID_Mission'] . "'
-					");
-
-				?> Voici les candidats qui ont postuler :  <?php
 				if ($clientCheck && $clientCheck->rowCount() == 1) {
+					$autreTable = $bdd->query("
+						SELECT ca.Nom, m.ID_Client
+						FROM clients cl 
+						INNER JOIN missions m ON cl.ID_Client=m.ID_Client
+						INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission
+						INNER JOIN candidats ca ON p.ID_Info=ca.ID_Info
+						WHERE m.ID_Client= '" . $_SESSION['id'] . "' AND m.ID_Mission = '" . $data['ID_Mission'] . "'
+						");
+
+					?> <p>Voici les candidats qui ont postuler :  <?php
+
 					while ($dataMission = $autreTable->fetch()) {
-						echo " " . $dataMission['Nom'] . " ";
+				  ?><p><form method="post" action="engager.php">
+					<p><input type="submit" name="submit" value="<?php echo $dataMission['Nom'];?>"></p>
+					</form></p><?php
 					}
 				}
 			}

@@ -29,7 +29,7 @@
     		<p><label> <strong>Code Postal : </strong> </label> <input id="code Postal" type="value" name="cpClient" placeholder="CP..."> 
     		   <label> <strong>Ville : </strong> </label> <input id="ville" type="text" name="villeClient" placeholder="Ville..."> </p>
 
-            <?php selectionPays() ?>
+            <?php selectionPays(); ?>
     		
     		<p><label for="telClient"> Telephone : </label> <input id="Telephone" type="text" name="telClient" placeholder="Telephone...">
                 <label for="gsmClient"> GSM : </label> <input id="GSM" type="text" name="gsmClient" placeholder="GSM..."></p>

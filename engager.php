@@ -2,9 +2,14 @@
 
 require 'fonctions/fonctions.php';
 
+session_start();
+
 if(isset($_POST['submit'])) {
-	echo "SON ID = " . $_POST['hiddenValue']; 
+	$idCandidat = $_POST['hiddenIdInfo'];
 }
 
+$bdd = dbConnexion();
+
+$bdd->beginTransaction();
 
 ?>

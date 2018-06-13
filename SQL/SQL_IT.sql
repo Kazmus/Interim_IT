@@ -116,7 +116,7 @@ CREATE TABLE engager(
         ID_Info   Int NOT NULL ,
         ID_Client Int NOT NULL ,
         ID_Mission Int NOT NULL
-	,CONSTRAINT engager_PK PRIMARY KEY (ID_Info,ID_Client)
+	,CONSTRAINT engager_PK PRIMARY KEY (ID_Info,ID_Client,ID_Mission)
 	,CONSTRAINT engager_Candidats_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
 	,CONSTRAINT engager_Clients0_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
         ,CONSTRAINT engager_Missions1_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)

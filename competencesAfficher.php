@@ -2,10 +2,12 @@
  
 require 'fonctions/fonctions.php';
 
+session_start();
+
 	try {
 		$bdd = dbConnexion();
 
-		$table = $bdd->query('SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info');
+		$table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' ");
 
 		while ($data = $table->fetch()) {
 			?>

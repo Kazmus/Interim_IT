@@ -99,7 +99,9 @@ function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, 
             <?php echo "Description : " . $description;?><br />
             <?php echo "Remuneration : " . $remuneration;?><br />
             <?php echo "Reservation restante : " . $reservation;?><br />
-            <?php echo "Client : " . $nomClient;?><br />
+            <?php if (isset($nomClient)) {
+                      echo "Client : " . $nomClient;
+                  } ?><br />
         </p>
         <?php
 }
@@ -151,7 +153,6 @@ function selectionAnneeExpComp () {
                     <option value="15">15 </option>
                     <option value="16">16 </option>
                     <option value="17">17 </option>
-                    <option value="18">18 </option>
                     <option value="18">18 </option>
                     <option value="19">19 </option>
                     <option value="20">20 </option>

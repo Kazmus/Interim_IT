@@ -3,6 +3,7 @@
 require 'fonctions/fonctions.php';
 
 $idInfo = $_POST['hiddenIdCandidat'];
+$idMission = $_POST['hiddenIdMission'];
 
 ?><form action="missionAfficher.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
 
@@ -36,6 +37,7 @@ $idInfo = $_POST['hiddenIdCandidat'];
 			</p>
 			<?php 
 			?><form method="post" action="engager.php">
+				<input type="hidden" name="hiddenIdMission" value="<?php echo $idMission;?>" />
 				<input type="hidden" name="hiddenIdInfo" value="<?php echo $data['ID_Info'];?>"/>
 				<input class="button" name='submit' type="submit" value="Engager" />
 			</form><?php

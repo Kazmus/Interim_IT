@@ -2,15 +2,20 @@
  
 require 'fonctions/fonctions.php';
 
+$idInfo = $_POST['hiddenIdCandidat'];
+
+?><form action="missionAfficher.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
+
 	try {
 		$bdd = dbConnexion();
 
-		$table = $bdd->query('SELECT * FROM candidats');
+		$table = $bdd->query("SELECT * FROM candidats ca INNER JOIN competences co ON ca.ID_Info=co.ID_Info WHERE ca.ID_Info= '" . $idInfo . "' ");
 
-		while ($data = $table->fetch()) {
+		if ($table && $table->rowCount() == 1) {
+			$data = $table->fetch()
 			?>
 			<p>
-			<?php echo "Candidat Numero : " . $data['ID_Info']; ?><br />
+			<?php echo "<h1>Candidat Numero : " . $data['ID_Info'] . "</h1>"; ?><br />
 			<?php echo "Nom : " . $data['Nom']; ?><br />
 			<?php echo "Prenom : " . $data['Prenom']; ?><br />
 			<?php echo "Genre : " . $data['Genre']; ?><br />
@@ -20,11 +25,24 @@ require 'fonctions/fonctions.php';
 			<?php echo "Gsm : " . $data['Gsm']; ?><br />
 			<?php echo "E-Mail : " . $data['E_Mail']; ?><br />
 			<?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+
+			<?php echo "<h2>Voici les differentes competences qu'il possede</h2>"?>
+			<?php echo "Diplome : " . $data['Diplome']; ?><br />
+			<?php echo "Certification : " . $data['Certification']; ?><br />
+			<?php echo "Annee d'experience : " . $data['Annee_d_experience']; ?><br />
+			<?php echo "Permis : " . $data['Permis']; ?><br />
+			<?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
+			<?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
 			</p>
-			<?php
+			<?php 
+			?><form method="post" action="engager.php">
+				<input type="hidden" name="hiddenValue" value="<?php echo $data['ID_Info'];?>"/>
+				<input class="button" name='submit' type="submit" value="Engager" />
+			</form><?php
 		}
 	} catch (Exception $e) {
-		
+		echo $e->getMessage();
+		echo $e->getCode();
 	}
 
 ?>

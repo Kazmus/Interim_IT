@@ -22,15 +22,16 @@ try {
 				affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
 
 				?><form method="post" action="postuler.php">
-					<p><input type="submit" name="submit" value="<?php echo $data['ID_Mission'];?>"> <--Postuler</p>
-					</form><?php
+					<input type="hidden" name="hiddenIdMission" value="<?php echo $data['ID_Mission'];?>"/>
+					<input class="button" name='submit' type="submit" value="Postuler" />
+				</form><?php
 			}
 		} else if ($clientCheck && $clientCheck->rowCount() == 1) {
 			while ($data = $tableClient->fetch()) {
 				affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
 
 				$autreTable = $bdd->query("
-					SELECT ca.Nom, m.ID_Client
+					SELECT ca.Nom, ca.Prenom, m.ID_Client, ca.ID_Info
 					FROM clients cl 
 					INNER JOIN missions m ON cl.ID_Client=m.ID_Client
 					INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission
@@ -41,9 +42,12 @@ try {
 				?><p>Voici les candidats qui ont postuler :  <?php
 
 				while ($dataMission = $autreTable->fetch()) {
-					?><p><form method="post" action="engager.php">
-						<p><input type="submit" name="submit" value="<?php echo $dataMission['Nom'];?>"></p>
+					?><p><form method="post" action="candidatAfficher.php">
+							<input type="hidden" name="hiddenIdCandidat" value="<?php echo $dataMission['ID_Info'];?>" />
+							<input class="button" name='submit' type="submit" value="<?php echo $dataMission['Nom'] . " " . $dataMission['Prenom'];?>" />
 						</form></p><?php
+
+
 				}
 			}
 		} 

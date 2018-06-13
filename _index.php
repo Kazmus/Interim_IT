@@ -27,12 +27,6 @@ if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
     ?>
     
     <form action="missionAfficher.php"><p><input type="submit" value="Missions"></p></form>
-    
-    <form action="candidatAfficher.php"><p><input type="submit" value="Candidats"></p></form>
-    
-    <form action="clientAfficher.php"><p><input  type="submit" value="Clients"></p></form>
-
-    <form action="competencesAfficher.php"><p><input type="submit" value="Competences"></p></form>
 
 </body>
 </html>

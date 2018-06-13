@@ -86,6 +86,24 @@ function checkComp () {
     }
 }
 
+function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, $dateFin, $effectif, $description, $remuneration, $reservation, $nomClient) {
+    ?>
+        <p>
+            <?php echo "Mission numero : " . $idMission;?><br />
+            <?php echo "Type de mission : " . $typeMission;?><br />
+            <?php echo "Titre : " . $titre;?><br />
+            <?php echo "Lieu : " . $lieu;?><br />
+            <?php echo "Date de debut : " . $dateDebut;?><br />
+            <?php echo "Date de fin : " . $dateFin;?><br />
+            <?php echo "Effectif requis : " . $effectif;?><br />
+            <?php echo "Description : " . $description;?><br />
+            <?php echo "Remuneration : " . $remuneration;?><br />
+            <?php echo "Reservation restante : " . $reservation;?><br />
+            <?php echo "Client : " . $nomClient;?><br />
+        </p>
+        <?php
+}
+
 function selectionAnneeExpMission() {
     ?>  
     <p><label><strong> Annee d'experience ? : </strong></label>

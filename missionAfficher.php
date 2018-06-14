@@ -25,9 +25,9 @@ try {
 				$tableEngager = $bdd->query("SELECT ID_Info,ID_Mission FROM engager WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
 				affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
 				if ($tableEngager->rowCount() == 1) {
-					?><strong>|--Vous etes deja Engager--|</strong><?php
+					?><input class="button" type="submit" value="Vous etes deja Engager"><?php
 				} else if ($tablePostuler->rowCount() == 1) {
-				  	?><strong>|--DEJA Postuler--|</strong><?php
+				  	?><input class="button" type="submit" value="DEJA Postuler"><?php
 				} else {
 				  ?><form method="post" action="postuler.php">
 					<input type="hidden" name="hiddenIdMission" value="<?php echo $data['ID_Mission'];?>"/>

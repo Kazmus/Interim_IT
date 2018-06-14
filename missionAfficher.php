@@ -23,9 +23,17 @@ try {
 			while ($data = $table->fetch()) {
 				$tablePostuler = $bdd->query("SELECT * FROM postuler WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
 				$tableEngager = $bdd->query("SELECT ID_Info,ID_Mission FROM engager WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
+				$tableVirer = $bdd->query("SELECT ID_Info,ID_Mission FROM virer WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
+
 				affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
+
 				if ($tableEngager->rowCount() == 1) {
-					?><input class="button" type="submit" value="Vous etes deja Engager"><?php
+					?><form method="post" action="clientAfficher.php">
+					<input type="hidden" name="hiddenIdClient" value="<?php echo $data['ID_Client'];?>"/>
+					<input class="button" name='submit' type="submit" value="Vous etes engager" /> Cliquez pour voir le client en detail
+					</form><?php
+				} else if ($tableVirer->rowCount() == 1) {
+					?><input class="button" type="submit" value="Vous n'etes pas retenu"><?php
 				} else if ($tablePostuler->rowCount() == 1) {
 				  	?><input class="button" type="submit" value="DEJA Postuler"><?php
 				} else {

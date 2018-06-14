@@ -2,30 +2,34 @@
 
 require 'fonctions/fonctions.php';
 
-	try {
-		$bdd = dbConnexion();
+?><form action="missionAfficher.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
 
-		$table = $bdd->query('SELECT * FROM clients');
+if (isset($_POST['submit'])) {
+	$idClient = $_POST['hiddenIdClient'];
+}
+try {
+	$bdd = dbConnexion();
 
-		while ($data = $table->fetch()) {
-			?>
-			<p>
-				<?php echo "Client Numero : " . $data['ID_Client']; ?><br />
-				<?php echo "Nom : " . $data['Nom']; ?><br />
-				<?php echo "Prenom : " . $data['Prenom']; ?><br />
-				<?php echo "Type : " . $data['Type']; ?><br />
-				<?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")";?><br />
-				<?php echo "Tel : " . $data['Tel']; ?><br />
-				<?php echo "Gsm : " . $data['Gsm']; ?><br />
-				<?php echo "E-Mail : " . $data['E_Mail']; ?><br />
-				<?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
-			</p>
-			<?php
-		}
+	$table = $bdd->query("SELECT * FROM clients WHERE ID_Client='" . $idClient . "' ");
 
-
-	} catch (Exception $e) {
-		
+	while ($data = $table->fetch()) {
+		?>
+		<p>
+			<?php echo "Client Numero : " . $data['ID_Client']; ?><br />
+			<?php echo "Nom : " . $data['Nom']; ?><br />
+			<?php echo "Prenom : " . $data['Prenom']; ?><br />
+			<?php echo "Type : " . $data['Type']; ?><br />
+			<?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")";?><br />
+			<?php echo "Tel : " . $data['Tel']; ?><br />
+			<?php echo "Gsm : " . $data['Gsm']; ?><br />
+			<?php echo "E-Mail : " . $data['E_Mail']; ?><br />
+			<?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+		</p>
+		<?php
 	}
+} catch (Exception $e) {
+	echo $e->getMessage();
+	echo $e->getCode();
+}
 
 ?>

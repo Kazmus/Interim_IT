@@ -2,6 +2,7 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+
 #------------------------------------------------------------
 # Table: Candidats
 #------------------------------------------------------------
@@ -21,9 +22,10 @@ CREATE TABLE Candidats(
         Gsm               Varchar (25) ,
         E_Mail            Varchar (50) NOT NULL ,
         SiteWeb           Varchar (100) ,
-        Mot_de_Passe      Varchar (50) NOT NULL 
-	,CONSTRAINT Candidats_PK PRIMARY KEY (ID_Info)
+        Mot_de_Passe      Varchar (50) NOT NULL
+        ,CONSTRAINT Candidats_PK PRIMARY KEY (ID_Info)
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Competences
@@ -40,7 +42,9 @@ CREATE TABLE Competences(
         ID_Info            Int NOT NULL
         ,CONSTRAINT Competences_PK PRIMARY KEY (ID_Comp)
         ,CONSTRAINT Competences_Candidats_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
+        ,CONSTRAINT Competences_Candidats_AK UNIQUE (ID_Info)
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Clients
@@ -61,8 +65,9 @@ CREATE TABLE Clients(
         E_Mail         Varchar (75) NOT NULL ,
         SiteWeb        Varchar (75) ,
         Mot_de_Passe   Varchar (75) NOT NULL
-	,CONSTRAINT Clients_PK PRIMARY KEY (ID_Client)
+        ,CONSTRAINT Clients_PK PRIMARY KEY (ID_Client)
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Missions
@@ -74,15 +79,16 @@ CREATE TABLE Missions(
         Titre           Varchar (75) NOT NULL ,
         Lieu            Varchar (50) NOT NULL ,
         Date_Debut      Date NOT NULL ,
-        Date_Fin        Date NOT NULL ,
+        Date_Fin        Date ,
         Effectif_Requis Int NOT NULL ,
         Description     Varchar (500) NOT NULL ,
-        Remuneration    Float NOT NULL,
+        Remuneration    Float ,
         Reservation_Max Int NOT NULL ,
         ID_Client       Int NOT NULL
-	,CONSTRAINT Missions_PK PRIMARY KEY (ID_Mission)
-	,CONSTRAINT Missions_Clients_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
+        ,CONSTRAINT Missions_PK PRIMARY KEY (ID_Mission)
+        ,CONSTRAINT Missions_Clients_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Postuler
@@ -91,10 +97,11 @@ CREATE TABLE Missions(
 CREATE TABLE Postuler(
         ID_Mission Int NOT NULL ,
         ID_Info    Int NOT NULL
-	,CONSTRAINT Postuler_PK PRIMARY KEY (ID_Mission,ID_Info)
-	,CONSTRAINT Postuler_Missions_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
-	,CONSTRAINT Postuler_Candidats0_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
+        ,CONSTRAINT Postuler_PK PRIMARY KEY (ID_Mission,ID_Info)
+        ,CONSTRAINT Postuler_Missions_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
+        ,CONSTRAINT Postuler_Candidats0_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
 )ENGINE=InnoDB;
+
 
 #------------------------------------------------------------
 # Table: Exiger
@@ -103,22 +110,38 @@ CREATE TABLE Postuler(
 CREATE TABLE Exiger(
         ID_Mission Int NOT NULL ,
         ID_Comp    Int NOT NULL
-	,CONSTRAINT Exiger_PK PRIMARY KEY (ID_Mission,ID_Comp)
-	,CONSTRAINT Exiger_Missions_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
-	,CONSTRAINT Exiger_Competences0_FK FOREIGN KEY (ID_Comp) REFERENCES Competences(ID_Comp)
+        ,CONSTRAINT Exiger_PK PRIMARY KEY (ID_Mission,ID_Comp)
+        ,CONSTRAINT Exiger_Missions_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
+        ,CONSTRAINT Exiger_Competences0_FK FOREIGN KEY (ID_Comp) REFERENCES Competences(ID_Comp)
 )ENGINE=InnoDB;
 
+
 #------------------------------------------------------------
-# Table: engager
+# Table: Engager
 #------------------------------------------------------------
 
-CREATE TABLE engager(
-        ID_Info   Int NOT NULL ,
-        ID_Client Int NOT NULL ,
+CREATE TABLE Engager(
+        ID_Client  Int NOT NULL ,
+        ID_Info    Int NOT NULL ,
         ID_Mission Int NOT NULL
-	,CONSTRAINT engager_PK PRIMARY KEY (ID_Info,ID_Client,ID_Mission)
-	,CONSTRAINT engager_Candidats_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
-	,CONSTRAINT engager_Clients0_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
-        ,CONSTRAINT engager_Missions1_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
+        ,CONSTRAINT Engager_PK PRIMARY KEY (ID_Client,ID_Info,ID_Mission)
+        ,CONSTRAINT Engager_Clients_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
+        ,CONSTRAINT Engager_Candidats0_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
+        ,CONSTRAINT Engager_Missions1_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: Virer
+#------------------------------------------------------------
+
+CREATE TABLE Virer(
+        ID_Info    Int NOT NULL ,
+        ID_Client  Int NOT NULL ,
+        ID_Mission Int NOT NULL
+        ,CONSTRAINT Virer_PK PRIMARY KEY (ID_Info,ID_Client,ID_Mission)
+        ,CONSTRAINT Virer_Candidats_FK FOREIGN KEY (ID_Info) REFERENCES Candidats(ID_Info)
+        ,CONSTRAINT Virer_Clients0_FK FOREIGN KEY (ID_Client) REFERENCES Clients(ID_Client)
+        ,CONSTRAINT Virer_Missions1_FK FOREIGN KEY (ID_Mission) REFERENCES Missions(ID_Mission)
 )ENGINE=InnoDB;
 

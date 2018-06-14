@@ -4,8 +4,11 @@ require 'fonctions/fonctions.php';
 
 session_start();
 
-$idMission = $_POST['hiddenIdMission'];
-$idInfo = $_SESSION['id'];
+if (isset($_POST['submit'])) {
+	$idMission = $_POST['hiddenIdMission'];
+	$idInfo = $_SESSION['id'];
+}
+
 
 $bdd = dbConnexion();
 

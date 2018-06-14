@@ -50,7 +50,7 @@ if ($idInfo == $data['ID_Info'] && $idClient == $data['ID_Client'] && $idMission
 		$effectif = $user['Effectif_Requis'];
 		if ($reserv >= 0 && $effectif > 0) {
 			$reserv = $reserv + 1;
-			$effectif = $effectif -1;
+			$effectif = $effectif - 1;
 			$bdd->query("UPDATE missions SET Reservation_Max= '" . $reserv .  "', Effectif_Requis= '" . $effectif . "' WHERE ID_Mission= '" . $idMission . "' ");
 			$bdd->query("DELETE FROM postuler WHERE ID_Info= '" . $idInfo . "' AND ID_Mission= '" . $idMission . "' ");
 			$bdd->commit();

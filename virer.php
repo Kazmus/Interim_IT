@@ -21,6 +21,14 @@ $table = $bdd->query("
 		
 	");
 
+$tableEngager = $bdd->query("
+		SELECT ca.ID_Info, cl.ID_Client, m.ID_Mission FROM engager e
+		INNER JOIN candidats ca ON e.ID_Info=ca.ID_Info
+		INNER JOIN clients cl ON e.ID_Client=cl.ID_Client
+		INNER JOIN missions m ON e.ID_Mission=m.ID_Mission
+		WHERE e.ID_Info='" . $idInfo . "' AND e.ID_Client= '" . $idClient . "' AND e.ID_Mission= '" . $idMission . "'
+	");
+
 $bdd->beginTransaction();
 
 if ($table && $table->rowCount() != 1) {
@@ -34,15 +42,22 @@ if ($table && $table->rowCount() != 1) {
 
 $tableReserv = $bdd->query("
 		SELECT Reservation_Max, Effectif_Requis FROM missions m 
-		INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission 
-		INNER JOIN candidats c ON p.ID_Info=c.ID_Info 
-		WHERE m.ID_Mission='" . $idMission . "' AND p.ID_Info = '" . $idInfo . "' 
+		INNER JOIN engager e ON m.ID_Mission=e.ID_Mission 
+		INNER JOIN candidats c ON e.ID_Info=c.ID_Info 
+		WHERE e.ID_Mission='" . $idMission . "' AND e.ID_Info = '" . $idInfo . "' 
 	");
 
 $data = $table->fetch();
 if ($idInfo == $data['ID_Info'] && $idClient == $data['ID_Client'] && $idMission == $data['ID_Mission']) {
 	$bdd->rollBack();
-	header("Location:dejaEngager.php");
+	header("Location:dejaVirer.php");
+} else if ($tableEngager && $tableEngager->rowCount() == 1) {
+		$user = $tableReserv->fetch();
+		$effectif = $user['Effectif_Requis'];
+		$effectif = $effectif + 1;
+		$bdd->query("UPDATE missions SET Effectif_Requis= '" . $effectif . "' WHERE ID_Mission= '" . $idMission . "' ");
+		$bdd->query("DELETE FROM engager WHERE ID_Client= '" . $idClient . "' AND ID_Info= '" . $idInfo . "' AND ID_Mission= '" . $idMission . "' ");
+		$bdd->commit();
 } else {
 	if ($tableReserv && $tableReserv->rowCount() == 1) {
 		$user = $tableReserv->fetch();

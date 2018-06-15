@@ -61,7 +61,7 @@ try {
     $tableMission = $bdd->query("
         SELECT ID_Mission
         FROM missions 
-        WHERE Annee_d_experience = '" . $anneeExpMis . "' 
+        WHERE Annee_d_experience= '" . $anneeExpMis . "' 
         AND Permis= '" . $permis . "' 
         AND (Langue= '" . $primLang . "' OR Langue= '" . $secLang . "') "
     );

@@ -244,7 +244,7 @@ function checkAnneeExp ($expAnnee) {
         break;
 
         default:
-        $anneeExpMis = '0';
+        $anneeExpMis = 'Aucune Experience';
         break;
     }
     return $anneeExpMis;

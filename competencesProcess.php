@@ -16,11 +16,18 @@ try {
         $secLang = $_POST['secondLang'];
         $idCandidat = $_SESSION['id'];
     }
-
-    $table = $bdd->query("SELECT ID_Info FROM competences WHERE ID_Info = '" . $_SESSION['id'] . "' ");
+    
+    $table = $bdd->query("SELECT ID_Info, ID_Comp FROM competences WHERE ID_Info = '" . $_SESSION['id'] . "' ");
     if ($table && $table->rowCount() == 1) {
         $data = $table->fetch();
         $idInfo = $data['ID_Info'];
+        $deleteIdComp = $bdd->query("SELECT ID_Comp FROM exiger WHERE ID_Comp = '" . $data['ID_Comp'] . "' ");
+        while ($deleteIdComp && $delete = $deleteIdComp->fetch()) {
+            echo $delete['ID_Comp'] . " ";
+            $bdd->query("
+            DELETE FROM exiger WHERE ID_Comp= '" . $delete['ID_Comp'] . "'
+            ");
+        }
         $bdd->query("
             UPDATE competences 
             SET Diplome= '" . $diplome .  "', 
@@ -30,6 +37,7 @@ try {
             Langue_Primaire= '" . $primLang . "',
             Langue_Secondaire= '" . $secLang . "'
             WHERE ID_Info= '" . $idInfo . "' ");
+        $idComp = $data['ID_Comp'];
     } else {
 
         $sql = $bdd->prepare('INSERT INTO competences (Diplome, Certification, Annee_d_experience, Permis, Langue_Primaire, Langue_Secondaire, ID_Info)
@@ -43,11 +51,12 @@ try {
             'secLang' => $secLang,
             'idCandidat' =>$idCandidat
         ));
+        $idComp = $bdd->lastInsertId();
     }
 
     $sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
-    $idComp = $bdd->lastInsertId();
-
+    
+    echo $idComp;
     $anneeExpMis = checkAnneeExp($_POST['expAnnee']);
 
     $tableMission = $bdd->query("
@@ -61,6 +70,8 @@ try {
     
     while ($data = $tableMission->fetch()) {
         $idMission = $data['ID_Mission'];
+
+
         $sql->execute(array(
             'idMission' => $idMission, 
             'idComp' => $idComp

@@ -37,7 +37,7 @@ require "fonctions/fonctions.php";
             <p>
                 Permis obligatoire ? : 
                 <input type="radio" name="permis" value="Oui"> Oui
-                <input type="radio" name="permis" value="Oui"> Non<br>
+                <input type="radio" name="permis" value="Non"> Non<br>
             </p>
             <?php selectionAnneeExpMission(); ?>
             <p><label> Langue requise ? : </label><select name="langue"><?php selectionLangues(); ?></select></p>

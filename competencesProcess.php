@@ -15,40 +15,6 @@ try {
         $primLang = $_POST['primaireLang'];
         $secLang = $_POST['secondLang'];
         $idCandidat = $_SESSION['id'];
-        $dateDebut = $_POST['dateDebut'];
-
-        switch ($_POST['remuneration']) {
-
-            case 'entre 0 et 999':
-            $remunerationMin = 1;
-            $remunerationMax = 2;
-            break;
-
-            case 'entre 1000 et 1999':
-            $remunerationMin = 3;
-            $remunerationMax = 5;
-            break;
-
-            case 'entre 2000 et 2999':
-            $remunerationMin = 6;
-            $remunerationMax = 10;
-            break;
-
-            case 'entre 3000 et 3999':
-            $remunerationMin = 11;
-            $remunerationMax = 20;
-            break;
-
-            case 'entre 4000 et 4999':
-            $remunerationMin = 21;
-            $remunerationMax = 30;
-            break;
-
-            case 'entre 5000 et 10000':
-            $remunerationMin = 5000;
-            $remunerationMax = 10000;
-            break;
-        }
     }
 
     $table = $bdd->query("SELECT ID_Info FROM competences WHERE ID_Info = '" . $_SESSION['id'] . "' ");
@@ -78,22 +44,33 @@ try {
             'idCandidat' =>$idCandidat
         ));
     }
-    echo "New record created succesfully";
-    ?><meta http-equiv="refresh" content="4; URL=pageCandidat.php"> <h2>Retour dans 4 secondes</h2> <?php
 
-    /*$sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
+    $sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
     $idComp = $bdd->lastInsertId();
 
-    $table = $bdd->query("SELECT ID_Mission FROM missions 
-        WHERE dateDebut>='" . $dateDebut . "' AND (Remuneration>='" . $remunerationMin . "' AND Remuneration<='" . $remunerationMax . "' ");
+    $anneeExpMis = checkAnneeExp($_POST['expAnnee']);
 
-    while ($data = $table->fetch()) {
+    $tableMission = $bdd->query("
+        SELECT ID_Mission
+        FROM missions 
+        WHERE Annee_d_experience>= '" . $anneeExpMis . "' 
+        AND Permis= '" . $permis . "' 
+        AND (Langue= '" . $primLang . "' OR Langue= '" . $secLang . "') "
+    );
+
+    
+    while ($data = $tableMission->fetch()) {
         $idMission = $data['ID_Mission'];
         $sql->execute(array(
-            'idMission' => $idMission,
+            'idMission' => $idMission, 
             'idComp' => $idComp
-        ));  
-    }*/
+
+        ));
+    } 
+
+    echo "<h2>Competence ajouter avec succes !</h2>";
+    ?><meta http-equiv="refresh" content="3; URL=pageCandidat.php"> <h2>Retour dans 3 secondes</h2> <?php
+
 } catch(Exception $e) {
 
     echo $e->getMessage();

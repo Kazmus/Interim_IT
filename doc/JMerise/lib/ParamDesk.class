@@ -2,8 +2,8 @@ Toutes modifications de ce fichier entrainent un dysfonctionnement de JMerise
 Vous serez seul responsable des désagréments occasionnés
 <MRDESK>
 FENETREMCD_VISIBLE = TRUE;
-FENETREMCD_X = 0;
-FENETREMCD_Y = 0;
+FENETREMCD_X = 5;
+FENETREMCD_Y = 5;
 FENETREMCD_W = 1633;
 FENETREMCD_H = 904;
 OMBRE = TRUE;
@@ -43,7 +43,7 @@ SQL_DEFAUT = MYSQL;
 INCLURE_COMMENTAIRE_TABLE_SQL = TRUE;
 INCLURE_COMMENTAIRE_ATTRIBUT_SQL = TRUE;
 DEVELOPPEUR = Kazmus;
-DATE_DERNIERE_USE = 14/06/2018;
+DATE_DERNIERE_USE = 15/06/2018;
 PROXY = FALSE;
 PROXY_HTTP = ;
 PROXY_PORT = ;

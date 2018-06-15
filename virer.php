@@ -42,9 +42,9 @@ if ($table && $table->rowCount() != 1) {
 
 $tableReserv = $bdd->query("
 		SELECT Reservation_Max, Effectif_Requis FROM missions m 
-		INNER JOIN engager e ON m.ID_Mission=e.ID_Mission 
-		INNER JOIN candidats c ON e.ID_Info=c.ID_Info 
-		WHERE e.ID_Mission='" . $idMission . "' AND e.ID_Info = '" . $idInfo . "' 
+		INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission 
+		INNER JOIN candidats c ON p.ID_Info=c.ID_Info 
+		WHERE p.ID_Mission='" . $idMission . "' AND p.ID_Info = '" . $idInfo . "' 
 	");
 
 $data = $table->fetch();

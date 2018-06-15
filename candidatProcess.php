@@ -42,8 +42,8 @@ try {
         'password' => $password
         ));
 
-    echo "New record created succesfully";
-    ?><meta http-equiv="refresh" content="4; URL=_index.php"> <h2>Retour dans 4 secondes</h2> <?php
+    echo "<h2>Inscription reussie !</h2>";
+    ?><meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
 }
 
 catch(Exception $e) {

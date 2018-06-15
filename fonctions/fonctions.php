@@ -106,7 +106,7 @@ function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, 
         <?php
 }
 
-function selectionAnneeExpMission() {
+function selectionAnneeExpMission () {
     ?>  
     <p><label><strong> Annee d'experience ? : </strong></label>
     <select name="anneeExp"> 
@@ -119,21 +119,139 @@ function selectionAnneeExpMission() {
     </select></p><?php
 }
 
-function selectionRemuneration() {
-    ?>  
-    <p><label><strong> Remuneration ? : </strong></label>
-    <select name="remuneration"> 
-        <option value="entre 0 et 999"> entre 0 et 999
-        <option value="entre 1000 et 1999"> entre 1000 et 1999
-        <option value="entre 2000 et 2999"> entre 2000 et 2999
-        <option value="entre 3000 et 3999"> entre 3000 et 3999
-        <option value="entre 4000 et 4999"> entre 4000 et 4999
-        <option value="5000 ou plus"> 5000 ou plus
-    </select></p><?php
+function checkAnneeExp ($expAnnee) {
+    
+    switch ($expAnnee) {
+
+        case 1:
+        $anneeExpMis = '1 ou 2 ans';
+        break;
+
+        case 2:
+        $anneeExpMis = '1 ou 2 ans';
+        break;
+
+        case 3:
+        $anneeExpMis = 'entre 3 et 5 ans';
+        break;
+
+        case 4:
+        $anneeExpMis = 'entre 3 et 5 ans';
+        break;
+
+        case 5:
+        $anneeExpMis = 'entre 3 et 5 ans';
+        break;
+
+        case 6:
+        $anneeExpMis = 'entre 6 et 10 ans';
+        break;
+
+        case 7:
+        $anneeExpMis = 'entre 6 et 10 ans';
+        break;
+
+        case 8:
+        $anneeExpMis = 'entre 6 et 10 ans';
+        break;
+
+        case 9:
+        $anneeExpMis = 'entre 6 et 10 ans';
+        break;
+
+        case 10:
+        $anneeExpMis = 'entre 6 et 10 ans';
+        break;
+
+        case 11:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 12:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 13:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 14:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 15:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 16:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 17:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 18:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 19:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 20:
+        $anneeExpMis = 'entre 11 et 20 ans';
+        break;
+
+        case 21:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 22:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 23:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 24:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 25:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 26:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 27:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 28:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 29:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        case 30:
+        $anneeExpMis = 'entre 21 et 30 ans';
+        break;
+
+        default:
+        $anneeExpMis = '0';
+        break;
+    }
+    return $anneeExpMis;
 }
 
 function selectionAnneeExpComp () {
-    ?><p><label>  Annee d'experience : </label>
+    ?><p><label><strong> Annee d'experience : </strong></label>
                 <select name="expAnnee"> 
                     <option value="0" selected="selected">0 </option>
                     <option value="1">1 </option>

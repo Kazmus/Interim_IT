@@ -1,6 +1,7 @@
 <?php 
 
 require 'fonctions/fonctions.php';
+
 session_start();
 
 ?>

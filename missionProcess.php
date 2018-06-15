@@ -20,6 +20,7 @@ try {
         $idCli = $_SESSION['id'];
         $permis = $_POST['permis'];
         $langue = $_POST['langue'];
+        $anneeExp = $_POST['anneeExp'];
 
         switch ($_POST['anneeExp']) {
 
@@ -55,8 +56,8 @@ try {
         }
     }
 
-    $sql = $bdd->prepare('INSERT INTO missions (Type_Mission, Titre, Lieu, Date_Debut, Date_Fin, Effectif_Requis, Description, Remuneration, Reservation_Max, ID_Client)
-        VALUES (:type, :titre, :lieu, :dateDebut, :dateFin, :effectif, :description, :remuneration, :reservMax, :idCli)');
+    $sql = $bdd->prepare('INSERT INTO missions (Type_Mission, Titre, Lieu, Date_Debut, Date_Fin, Effectif_Requis, Description, Remuneration, Reservation_Max, Annee_d_experience, Permis, Langue, ID_Client)
+        VALUES (:type, :titre, :lieu, :dateDebut, :dateFin, :effectif, :description, :remuneration, :reservMax, :anneeExp, :permis, :langue, :idCli)');
     $sql->execute(array(
         'type' => $type,
         'titre' => $titre,
@@ -67,10 +68,11 @@ try {
         'description' => $description,
         'remuneration' => $remuneration,
         'reservMax' => $reservMax,
+        'anneeExp' => $anneeExp,
+        'permis' => $permis,
+        'langue' => $langue,
         'idCli' => $idCli
     ));
-
-    
 
     $sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
     $idMission = $bdd->lastInsertId();
@@ -90,17 +92,13 @@ try {
             'idComp' => $idComp
 
         ));
+    }   
 
-    }
-    
-
-echo "<h2>New record created succesfully</h2>";
-?><meta http-equiv="refresh" content="4; URL=pageClient.php"> <h2>Retour dans 4 secondes</h2> <?php
+echo "<h2>Mission creer avec success !</h2>";
+?><meta http-equiv="refresh" content="3; URL=pageClient.php"> <h2>Retour dans 3 secondes</h2> <?php
 
 } catch(Exception $e) {
-
     echo $e->getMessage();
     echo $e->getCode();
-
 }
 ?>

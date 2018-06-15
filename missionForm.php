@@ -35,12 +35,12 @@ require "fonctions/fonctions.php";
 
             <h2>Competences requises</h2>
             <p>
-                <strong> Permis obligatoire ? : </strong>
+                Permis obligatoire ? : 
                 <input type="radio" name="permis" value="Oui"> Oui
                 <input type="radio" name="permis" value="Oui"> Non<br>
             </p>
             <?php selectionAnneeExpMission(); ?>
-            <p><label><strong> Langue requise ? : </strong></label><select name="langue"><?php selectionLangues(); ?></select></p>
+            <p><label> Langue requise ? : </label><select name="langue"><?php selectionLangues(); ?></select></p>
 
     		<p><input type="submit" name="submit" value="Valider le formulaire"/>
     		<input type="reset" value="Remettre à 0"></p>

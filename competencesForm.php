@@ -35,10 +35,6 @@
                 </select>
             </p>
 
-            <h2>Preferences de mission</h2>
-            <p><label> Date de debut :  </label><input type="Date" name="dateDebut" ></p>
-            <?php selectionRemuneration(); ?>
-
     		<p><input type="submit" name="submit" value="Valider le formulaire"/>
     		<input type="reset" value="Remettre à 0"></p>
     	</form>

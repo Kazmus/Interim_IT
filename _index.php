@@ -17,9 +17,9 @@ session_start();
 
 	<section id="banner">
 				<div class="inner">
-					<h1>INTERIM IT</h1>
+					<h1><img  src="images/phenix3.png" width="300px" alt="Photo de montagne" />	</h1>
 					<p>WHERE ARE FROM THE FUTUR<br />
-					WE WILL HIRE YOU NO MATTER WHAT</p>
+					YOUR MISSION IS OURS</p>
 				</div>
 				<video autoplay loop muted playsinline src="images/banner.mp4"></video>
 	</section>

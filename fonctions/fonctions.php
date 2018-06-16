@@ -60,8 +60,6 @@ function login() {
 				$_SESSION['id'] = $user['ID_Client'];
                 $_SESSION['user'] = $user['E_Mail'];
                 $_SESSION['nom'] = $user['Nom'];
-				echo "<h1>Bienvenu sur notre site " . $user['Nom'] . '</h1><br />';
-				echo "<h2>Session numero : " . $_SESSION['id'] . "</h2>";
 				$table->closeCursor();
 				return 2;
 			} else if (isset($_POST['user']) && (isset($_POST['password']))) {
@@ -71,8 +69,6 @@ function login() {
 					$_SESSION['id'] = $user['ID_Info'];
                     $_SESSION['user'] = $user['E_Mail'];
                     $_SESSION['nom'] = $user['Nom'];
-					echo "<h1>Bienvenu sur notre site " . $user['Nom'] . '</h1><br />';
-					echo "<h2>Session numero : " . $_SESSION['id'] . "</h2>";
 					$table->closeCursor();
 					return 1;
 				} else {
@@ -247,6 +243,7 @@ function afficherMission () {
 function afficherCompetence() {
     
     $bdd = dbConnexion();
+
 
     $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' ");
 

@@ -22,7 +22,7 @@ $table = $bdd->query("
 	");
 
 $tableEngager = $bdd->query("
-		SELECT ca.ID_Info, cl.ID_Client, m.ID_Mission FROM engager e
+		SELECT e.ID_Info, e.ID_Client, e.ID_Mission FROM engager e
 		INNER JOIN candidats ca ON e.ID_Info=ca.ID_Info
 		INNER JOIN clients cl ON e.ID_Client=cl.ID_Client
 		INNER JOIN missions m ON e.ID_Mission=m.ID_Mission
@@ -41,27 +41,36 @@ if ($table && $table->rowCount() != 1) {
 }
 
 $tableReserv = $bdd->query("
-		SELECT Reservation_Max, Effectif_Requis FROM missions m 
+		SELECT Reservation_Max FROM missions m 
 		INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission 
 		INNER JOIN candidats c ON p.ID_Info=c.ID_Info 
 		WHERE p.ID_Mission='" . $idMission . "' AND p.ID_Info = '" . $idInfo . "' 
+	");
+
+$tableMission = $bdd->query("
+		SELECT Effectif_Requis FROM missions WHERE ID_Mission= '" . $idMission . "'
 	");
 
 $data = $table->fetch();
 if ($idInfo == $data['ID_Info'] && $idClient == $data['ID_Client'] && $idMission == $data['ID_Mission']) {
 	$bdd->rollBack();
 	header("Location:dejaVirer.php");
-} else if ($tableEngager && $tableEngager->rowCount() == 1) {
-		$user = $tableReserv->fetch();
-		$effectif = $user['Effectif_Requis'];
+} else if ($tableEngager->rowCount() == 1) {
+	if ($tableMission && $tableMission->rowCount() == 1) {
+		$userEffectif = $tableMission->fetch();
+		$effectif = $userEffectif['Effectif_Requis'];
 		$effectif = $effectif + 1;
 		$bdd->query("UPDATE missions SET Effectif_Requis= '" . $effectif . "' WHERE ID_Mission= '" . $idMission . "' ");
 		$bdd->query("DELETE FROM engager WHERE ID_Client= '" . $idClient . "' AND ID_Info= '" . $idInfo . "' AND ID_Mission= '" . $idMission . "' ");
 		$bdd->commit();
+	} else {
+			$bdd->rollBack();
+			header("Location:oups.php");
+	}
 } else {
 	if ($tableReserv && $tableReserv->rowCount() == 1) {
-		$user = $tableReserv->fetch();
-		$reserv = $user['Reservation_Max'];
+		$userReserv = $tableReserv->fetch();
+		$reserv = $userReserv['Reservation_Max'];
 		if ($reserv >= 0) {
 			$reserv = $reserv + 1;
 			$bdd->query("UPDATE missions SET Reservation_Max= '" . $reserv .  "' WHERE ID_Mission= '" . $idMission . "' ");
@@ -73,5 +82,5 @@ if ($idInfo == $data['ID_Info'] && $idClient == $data['ID_Client'] && $idMission
 		}
 	}
 }
-?><meta http-equiv="refresh" content="0; URL=missionAfficher.php"><?php
+?><meta http-equiv="refresh" content="0; URL=_index.php"><?php
 ?>

@@ -14,6 +14,6 @@ $bdd->query("DELETE FROM postuler WHERE ID_Mission= '" . $idMission . "' ");
 $bdd->query("DELETE FROM exiger WHERE ID_Mission= '" . $idMission . "' ");
 $bdd->query("DELETE FROM missions WHERE ID_Mission= '" . $idMission . "' ");
 
-?><meta http-equiv="refresh" content="0; URL=missionAfficher.php"><?php
+?><meta http-equiv="refresh" content="0; URL=_index.php"><?php
 
 ?>

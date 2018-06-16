@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 	$idMission = $_POST['hiddenIdMission'];
 }
 
-?><form action="missionAfficher.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
+?><form action="_index.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
 
 try {
 	$bdd = dbConnexion();

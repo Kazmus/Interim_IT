@@ -9,15 +9,22 @@ function dbConnexion() {
 function checkConnex () {
     if (!isset($_SESSION['id'])) {?>
         <form action="connexion.php" method="post"><p>
-            <input type="text" name="user" placeholder="Votre mail...">
-            <input type="password" name="password" placeholder="Mot de passe...">
-            <input type="submit" name="submit" value="Connexion"></p></form>
-        <form action="candidatForm.php"><p><input type="submit" value="Insciption Candidat"></p></form>
-        <form action="clientForm.php"><p><input type="submit" value="Insciption Client"></p></form><?php 
+            <input class="button button2" type="text" name="user" placeholder="Votre mail...">
+            <input class="button button2" type="password" name="password" placeholder="Mot de passe...">
+            <input class="button" type="submit" name="submit" value="Connexion"></p></form>
+
+        <form action="candidatForm.php">
+            <button class="button"> Insciption Candidat </button>
+        </form>
+
+        <form action="clientForm.php">
+            <button class="button"> Insciption Client </button>
+        </form><?php 
+
     } else {?>
         <form action="deconnexion.php">
         <p>
-        <input type="submit" value="Deconnexion">
+        <input class="button" type="submit" value="Deconnexion">
         </p>
         </form><?php
     }
@@ -28,7 +35,7 @@ function sessionClient () {
     if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
         $table = $bdd->query("SELECT ID_Client, Nom FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
         if ($table && $table->rowCount() == 1) {?>
-            <form action="pageClient.php"><p><input type="submit" value="Page Client"></p></form><?php
+            <form action="pageClient.php"><p><input class="button" type="submit" value="Page Client"></p></form><?php
         }
     }
 }
@@ -38,7 +45,7 @@ function sessionCandidat () {
     if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
         $table = $bdd->query("SELECT ID_Info, Nom FROM candidats WHERE ID_Info =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
         if ($table && $table->rowCount() == 1) {?>
-            <form action="pageCandidat.php"><p><input type="submit" value="Page Candidat"></p></form><?php
+            <form action="pageCandidat.php"><p><input class="button" type="submit" value="Page Candidat"></p></form><?php
         }
     }
 }
@@ -88,21 +95,23 @@ function checkComp () {
 
 function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, $dateFin, $effectif, $description, $remuneration, $reservation, $nomClient) {
     ?>
-        <p>
-            <?php echo "Mission numero : " . $idMission;?><br />
-            <?php echo "Type de mission : " . $typeMission;?><br />
-            <?php echo "Titre : " . $titre;?><br />
-            <?php echo "Lieu : " . $lieu;?><br />
-            <?php echo "Date de debut : " . $dateDebut;?><br />
-            <?php echo "Date de fin : " . $dateFin;?><br />
-            <?php echo "Effectif requis : " . $effectif;?><br />
-            <?php echo "Description : " . $description;?><br />
-            <?php echo "Remuneration : " . $remuneration;?><br />
-            <?php echo "Reservation restante : " . $reservation;?><br />
-            <?php if (isset($nomClient)) {
-                      echo "Client : " . $nomClient;
-                  } ?><br />
-        </p>
+        <?php //echo '<div class="element">';?>
+            <h2>
+                Mission numero :  <?php echo $idMission ?> <br />
+                Type de mission :  <?php echo $typeMission ?> <br />
+                Titre :  <?php echo $titre ?> <br />
+                Lieu :  <?php echo $lieu ?> <br />
+                Date de debut :  <?php echo $dateDebut ?> <br />
+                Date de fin :  <?php echo $dateFin ?> <br />
+                Effectif requis :  <?php echo  $effectif ?> <br />
+                Description :  <?php echo $description ?> <br />
+                Remuneration :  <?php echo $remuneration ?> <br />
+                Reservation restante :  <?php echo $reservation ?> <br />
+                <?php if (isset($nomClient)) { ?>
+                          Client :  <?php echo  $nomClient ?>
+                  <?php } ?><br />
+              </h2>
+           <?php //echo '</div>';?>
         <?php
 }
 
@@ -117,6 +126,146 @@ function selectionAnneeExpMission () {
         <option value="entre 11 et 20 ans"> entre 11 et 20 ans
         <option value="21 ou plus"> 21 ou plus
     </select></p><?php
+}
+
+function afficherMission () {
+    try {
+    $bdd = dbConnexion();
+
+    $table = $bdd->query("SELECT * FROM missions m INNER JOIN clients c ON m.ID_Client=c.ID_Client ORDER BY Date_Debut");
+
+    if (isset($_SESSION['user']) && isset($_SESSION['id'])) {
+
+        $tableClient = $bdd->query("SELECT * FROM missions m INNER JOIN clients c ON m.ID_Client=c.ID_Client 
+        WHERE m.ID_Client= '" . $_SESSION['id'] . "' ORDER BY Date_Debut");
+
+        $infoCheck = $bdd->query("SELECT ID_Info, E_Mail FROM candidats WHERE ID_Info=  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
+
+        $clientCheck = $bdd->query("SELECT ID_Client, E_Mail FROM clients WHERE ID_Client=  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
+
+        $compCheck = $bdd->query("SELECT ID_Comp FROM competences WHERE ID_Info= '" . $_SESSION['id'] . "' ");
+
+        if ($infoCheck && $infoCheck->rowCount() == 1) {
+            $dataComp = $compCheck->fetch();
+            while ($data = $table->fetch()) {
+                $tablePostuler = $bdd->query("SELECT * FROM postuler WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
+                $tableEngager = $bdd->query("SELECT ID_Info,ID_Mission FROM engager WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
+                $tableVirer = $bdd->query("SELECT ID_Info,ID_Mission FROM virer WHERE ID_Info= '" . $_SESSION['id'] . "' AND ID_Mission='" . $data['ID_Mission'] . "' ");
+                $tableExiger = $bdd->query("SELECT ID_Mission, ID_Comp FROM exiger WHERE ID_Mission= '" . $data['ID_Mission'] . "' AND ID_Comp= '" . $dataComp['ID_Comp'] . "' ");
+                if ($tableExiger && $tableExiger->fetch()) {
+                    echo '<div class="element">';
+                    affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
+
+                    if ($compCheck && $compCheck->rowCount() == 1) {
+                        if ($tableEngager->rowCount() == 1) {
+                        ?><form method="post" action="clientAfficher.php">
+                            <input type="hidden" name="hiddenIdClient" value="<?php echo $data['ID_Client'];?>"/>
+                            <input class="button" name='submit' type="submit" value="Vous etes engager" /> Cliquez pour voir le client en detail
+                        </form><?php
+                        } else if ($tableVirer->rowCount() == 1) {
+                          ?><input class="button button3" type="submit" value="Vous n'etes pas retenu"><?php
+                        } else if ($tablePostuler->rowCount() == 1) {
+                          ?><input class="button button3" type="submit" value="DEJA Postuler"><?php
+                        } else {
+                          ?><form method="post" action="postuler.php">
+                            <input type="hidden" name="hiddenIdMission" value="<?php echo $data['ID_Mission'];?>"/>
+                            <input class="button button3" name='submit' type="submit" value="Postuler" />
+                        </form><?php
+                        }
+                    } else {
+                         ?><input class="button button3" type="submit" value="Vous devez ajouter vos competences pour postuler"><?php
+                    }   echo '</div>';
+                }
+            }
+        } else if ($clientCheck && $clientCheck->rowCount() == 1) {
+            while ($data = $tableClient->fetch()) {
+                echo '<div class="element">';
+                affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], NULL);
+
+                $autreTablePostuler = $bdd->query("
+                    SELECT ca.Nom, ca.Prenom, m.ID_Client, ca.ID_Info, m.ID_Mission
+                    FROM clients cl 
+                    INNER JOIN missions m ON cl.ID_Client=m.ID_Client
+                    INNER JOIN postuler p ON m.ID_Mission=p.ID_Mission
+                    INNER JOIN candidats ca ON p.ID_Info=ca.ID_Info
+                    WHERE m.ID_Client= '" . $_SESSION['id'] . "' AND m.ID_Mission = '" . $data['ID_Mission'] . "'
+                ");
+
+                $autreTableEngager = $bdd->query("
+                    SELECT ca.Nom, ca.Prenom, m.ID_Client, ca.ID_Info, m.ID_Mission
+                    FROM engager e 
+                    INNER JOIN missions m ON e.ID_Mission=m.ID_Mission
+                    INNER JOIN candidats ca ON e.ID_Info=ca.ID_Info
+                    WHERE e.ID_Client= '" . $_SESSION['id'] . "' AND e.ID_Mission = '" . $data['ID_Mission'] . "' 
+                ");
+                
+                  ?> <form method="post" action="supprimerMission.php">
+                        <input type="hidden" name="hiddenIdMission" value="<?php echo $data['ID_Mission'];?>" />
+                        <input class="button button3" name="submit" type="submit" value="Supprimer cette mission" />
+                    </form><?php
+                    //echo '</div>';
+                    //echo '<div class="element">';
+                ?><h2>Voici les candidats qui ont postuler : </h2><?php
+
+                while ($dataMission = $autreTablePostuler->fetch()) {
+               ?> 
+                    <form method="post" action="candidatAfficher.php">
+                        <input type="hidden" name="hiddenIdMission" value="<?php echo $dataMission['ID_Mission'];?>" />
+                        <input type="hidden" name="hiddenIdCandidat" value="<?php echo $dataMission['ID_Info'];?>" />
+                        <input class="button button3" name='submit' type="submit" value="<?php echo $dataMission['Nom'] . " " . $dataMission['Prenom'];?>" />
+                    </form>
+                <?php
+                }
+               // echo '</div>';
+               // echo '<div class="element">';
+                ?><h2>Voici les candidats que vous avez engager : </h2><?php
+
+                while ($dataMission = $autreTableEngager->fetch()) {
+                ?>
+                    <form method="post" action="candidatAfficher.php">
+                        <input type="hidden" name="hiddenIdMission" value="<?php echo $dataMission['ID_Mission'];?>" />
+                        <input type="hidden" name="hiddenIdCandidat" value="<?php echo $dataMission['ID_Info'];?>" />
+                        <input class="button button3" name='submit' type="submit" value="<?php echo $dataMission['Nom'] . " " . $dataMission['Prenom'];?>" />
+                    </form>
+                <?php
+                }echo '</div>';
+            }
+        } 
+    } else {
+        while ($data = $table->fetch()) {
+            echo '<div class="element">';
+            affichageMission($data['ID_Mission'], $data['Type_Mission'], $data['Titre'], $data['Lieu'], $data['Date_Debut'], $data['Date_Fin'], $data['Effectif_Requis'], $data['Description'], $data['Remuneration'], $data['Reservation_Max'], $data['Nom']);
+            echo '</div>';
+        }
+    }
+} catch (Exception $e) {
+    echo $e->getMessage();
+    echo $e->getCode();
+}
+}
+
+function afficherCompetence() {
+    
+    $bdd = dbConnexion();
+
+    $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' ");
+
+    while ($data = $table->fetch()) {
+        ?>
+        <p>
+            <?php echo "<h2>Competences de  " . $data['Nom'] . " " . $data['Prenom'] . "</h2>"?>
+            <?php echo "Competence Numero : " . $data['ID_Comp']; ?><br />
+            <?php echo "Diplome : " . $data['Diplome']; ?><br />
+            <?php echo "Certification : " . $data['Certification']; ?><br />
+            <?php echo "Annee d'experience : " . $data['Annee_d_experience']; ?><br />
+            <?php echo "Permis : " . $data['Permis']; ?><br />
+            <?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
+            <?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
+            <?php echo "Candidat Numero : " . $data['ID_Info']; ?><br />
+        </p>
+        <?php
+    }
+    
 }
 
 function checkAnneeExp ($expAnnee) {

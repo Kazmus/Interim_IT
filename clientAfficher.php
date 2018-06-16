@@ -2,7 +2,7 @@
 
 require 'fonctions/fonctions.php';
 
-?><form action="missionAfficher.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
+?><form action="_index.php"><p><input type="submit" value="Retour a la page mission"></p></form><?php
 
 if (isset($_POST['submit'])) {
 	$idClient = $_POST['hiddenIdClient'];

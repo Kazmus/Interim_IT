@@ -9,7 +9,6 @@ if (isset($_POST['submit'])) {
 	$idInfo = $_SESSION['id'];
 }
 
-
 $bdd = dbConnexion();
 
 $bdd->beginTransaction();
@@ -55,5 +54,5 @@ if ($idMission == $data['ID_Mission'] && $idInfo == $data['ID_Info']) {
 		}
 	}
 }
-?><meta http-equiv="refresh" content="0; URL=missionAfficher.php"><?php
+?><meta http-equiv="refresh" content="0; URL=_index.php"><?php
 ?>

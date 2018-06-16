@@ -27,7 +27,8 @@ session_start();
 			<?php
 		}
 	} catch (Exception $e) {
-		
+		echo $e->getMessage();
+    	echo $e->getCode();
 	}
 
 ?>

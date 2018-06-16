@@ -60,5 +60,5 @@ if ($idInfo == $data['ID_Info'] && $idClient == $data['ID_Client'] && $idMission
 		}
 	}
 }
-?><meta http-equiv="refresh" content="0; URL=missionAfficher.php"><?php
+?><meta http-equiv="refresh" content="0; URL=_index.php"><?php
 ?>

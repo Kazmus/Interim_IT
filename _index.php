@@ -18,7 +18,7 @@ session_start();
 	<section id="banner">
 				<div class="inner">
 					<h1><img  src="images/phenix3.png" width="300px" alt="Photo de montagne" />	</h1>
-					<h1>YOUR FUTUR IS OUR MISSION</h1>
+					<h1>YOUR FUTURE IS OUR MISSION</h1>
 				</div>
 				<video  autoplay loop muted playsinline src="images/banner.mp4"></video>
 	</section>

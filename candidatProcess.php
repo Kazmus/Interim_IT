@@ -23,9 +23,14 @@ try {
         $password = $_POST['password'];
     }
 
-    $sql = $bdd->prepare('INSERT INTO candidats (Nom, Prenom, Genre, Date_de_Naissance, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb, Mot_de_Passe)
-    VALUES (:nom, :prenom, :genre, :naissance, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb, :password)');
-    $sql->execute(array(
+    $table = $bdd->query("SELECT E_Mail FROM candidats WHERE E_Mail='" . $mail . "' ");
+
+    if ($table && $table->rowCount() == 1) {
+        header("Location:mailExistant.php");
+    } else {
+        $sql = $bdd->prepare('INSERT INTO candidats (Nom, Prenom, Genre, Date_de_Naissance, Adresse, Numero_Adresse, Code_Postal, Ville, Pays, Tel, Gsm, E_Mail, SiteWeb, Mot_de_Passe)
+        VALUES (:nom, :prenom, :genre, :naissance, :adresse, :numAdresse, :cp, :ville, :pays, :tel, :gsm, :mail, :siteWeb, :password)');
+        $sql->execute(array(
         'nom' => $nom,
         'prenom' => $prenom,
         'genre' => $genre,
@@ -42,8 +47,13 @@ try {
         'password' => $password
         ));
 
-    echo "<h2>Inscription reussie !</h2>";
-    ?><meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
+        echo "<h2>Inscription reussie !</h2>";
+        ?><meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
+    }
+       
+    
+
+    
 }
 
 catch(Exception $e) {

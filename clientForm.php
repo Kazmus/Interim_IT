@@ -24,7 +24,7 @@
            </p>
 
            <p><label> <strong>Nom : </strong> </label> <input id="name" type="text" name="nomClient" required placeholder="Nom Famille/Entreprise..."></p>
-           <p><label> Prénom : </label> <input id="name" type="text" name="prenomClient" required placeholder="Prenom..."></p>
+           <p><label> Prénom : </label> <input id="name" type="text" name="prenomClient" placeholder="Prenom..."></p>
 
            <p><label> <strong>Rue : </strong> </label> <input id="rue" type="text" name="rueClient" required placeholder="Rue...">
                <label> <strong>N° : </strong> </label> <input id="N°" type="value" name="numeroBatiment" required placeholder="NumeroBatiment..."></p>

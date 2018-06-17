@@ -26,9 +26,13 @@
 }
 
 section#formulaire {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+}
 
+section#redirection {
+    display: flex;
+    justify-content: center;
 }
 
 .buttonElem {

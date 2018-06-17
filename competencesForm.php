@@ -23,12 +23,12 @@
             <p>
                 <strong> Avez-vous le permis B ? </strong>
                 <input type="radio" name="radio" value="Oui"> Oui
-                <input type="radio" name="radio" value="Non"> Non<br>
+                <input type="radio" name="radio" value="Non" checked> Non<br>
             </p>
 
             <p>
                 <strong> Quelle est votre langue maternelle ? </strong>
-                <select name="primaireLang">
+                <select name="primaireLang" required>
                 <?php selectionLangues(); ?> 
                 </select>
 

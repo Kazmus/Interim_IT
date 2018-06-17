@@ -119,7 +119,7 @@ function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, 
 function selectionAnneeExpMission () {
     ?>  
     <p><label><strong> Année d'expériences ? : </strong></label>
-    <select name="anneeExp"> 
+    <select name="anneeExp" required> 
         <option value="Aucune Experience"> Aucune Experience
         <option value="1 ou 2 ans"> 1 ou 2 ans
         <option value="entre 3 et 5 ans"> entre 3 et 5 ans
@@ -478,7 +478,7 @@ function checkAnneeExp ($expAnnee) {
 
 function selectionAnneeExpComp () {
     ?><p><label><strong> Annee d'experience : </strong></label>
-                <select name="expAnnee"> 
+                <select name="expAnnee" required> 
                     <option value="0" selected="selected">0 </option>
                     <option value="1">1 </option>
                     <option value="2">2 </option>
@@ -515,7 +515,8 @@ function selectionAnneeExpComp () {
 }
 
 function selectionLangues() {
-    ?>  <option value="Anglais" selected="selected"> Anglais
+    ?>  <option value="" selected=></option>
+        <option value="Anglais"> Anglais
         <option value="Allemand"> Allemand
         <option value="Arabe"> Arabe
         <option value="Bengali"> Bengali
@@ -556,8 +557,7 @@ function selectionPays() {
 
 	?><p><label> <strong>Pays : </strong> </label>
 
-    	<select name="pays"> 
-            <option value="France" selected="selected">France </option>
+    	<select name="pays" required> 
             <option value="Afghanistan">Afghanistan </option>
             <option value="Afrique_Centrale">Afrique_Centrale </option>
             <option value="Afrique_du_sud">Afrique_du_Sud </option> 
@@ -577,7 +577,7 @@ function selectionPays() {
             <option value="Bangladesh">Bangladesh </option>
             <option value="Barbade">Barbade </option>
             <option value="Bahrein">Bahrein </option>
-            <option value="Belgique">Belgique </option>
+            <option value="Belgique" selected>Belgique </option>
             <option value="Belize">Belize </option>
             <option value="Benin">Benin </option>
             <option value="Bermudes">Bermudes </option>

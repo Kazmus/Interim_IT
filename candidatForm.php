@@ -13,29 +13,29 @@
         
     		<h1>Formulaire du Candidats</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
-    		<p><label> <strong>Nom : </strong> </label> <input id="Name" type="text" name="nomCandidat" placeholder="Nom Famille/Entreprise..."></p>
-    		<p><label> <strong>Prénom : </strong> </label> <input id="Name" type="text" name="prenomCandidat" placeholder="Prenom..."></p>
+    		<p><label> <strong>Nom : </strong> </label> <input id="Name" type="text" name="nomCandidat" required placeholder="Nom Famille/Entreprise..."></p>
+    		<p><label> <strong>Prénom : </strong> </label> <input id="Name" type="text" name="prenomCandidat" required placeholder="Prenom..."></p>
             <br>
 
-            <p>
-            <input type="radio" name="radio" value="Homme"> Homme
+            <p >
+            <input type="radio" name="radio" value="Homme" checked> Homme
             <input type="radio" name="radio" value="Femme"> Femme<br>
             </p>
 
-            <p><label> <strong>Date de naissance :</strong> </label> <input type="date" name="dateNaissance" value="dateNaissancee"></p>
-    		<p><label> <strong>Rue : </strong> </label> <input id="Rue" type="text" name="rueCandidat" placeholder="Rue..."
-    		   <label> <strong>N° : </strong> </label> <input id="N°" type="value" name="numeroBatimentCandidat" placeholder="NumeroBatiment..."> </p>
+            <p><label> <strong>Date de naissance :</strong> </label> <input type="date" name="dateNaissance" required value="dateNaissancee"></p>
+    		<p><label> <strong>Rue : </strong> </label> <input id="Rue" type="text" name="rueCandidat" required placeholder="Rue..."
+    		   <label> <strong>N° : </strong> </label> <input id="N°" type="value" name="numeroBatimentCandidat" required placeholder="NumeroBatiment..."> </p>
     		
-    		<p><label> <strong>Code Postal : </strong> </label> <input id="Code Postal" type="value" name="cpCandidat" placeholder="CP..."> 
-    		   <label> <strong>Ville : </strong> </label> <input id="Ville" type="text" name="villeCandidat" placeholder="Ville..."> </p>
+    		<p><label> <strong>Code Postal : </strong> </label> <input id="Code Postal" type="value" name="cpCandidat" required placeholder="CP..."> 
+    		   <label> <strong>Ville : </strong> </label> <input id="Ville" type="text" name="villeCandidat" required placeholder="Ville..."> </p>
     		
     		<?php selectionPays() ?>
     		
     		<p> <label> Téléphone : </label> <input id="Telephone" type="value" name="telCandidat" placeholder="Telephone...">
                 <label> GSM : </label> <input id="GSM" type="value" name="gsmCandidat" placeholder="GSM..."></p>
     		<p>
-                <label for="E-Mail"><strong> E-Mail : </strong></label> <input id="E-Mail" type="text" name="emailCandidat" placeholder="E-Mail...">
-                <label for="password"><strong> Mot-de-passe : </strong></label><input type="password" name="password" placeholder="Mot de passe...">
+                <label for="E-Mail"><strong> E-Mail : </strong></label> <input id="E-Mail" type="text" name="emailCandidat" required placeholder="E-Mail...">
+                <label for="password"><strong> Mot-de-passe : </strong></label><input type="password" name="password" required placeholder="Mot de passe...">
             </p>
     		<p><label for="webURL"> Site-Web : </label> <input id="webURL" type="text" name="siteCandidat" placeholder="URL..."></p>
     		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>

@@ -243,27 +243,26 @@ function afficherMission () {
 function afficherCompetence() {
     
     $bdd = dbConnexion();
+    if (isset($_SESSION['user']) && isset($_SESSION['id'])) {
+        $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' AND ca.E_Mail='" . $_SESSION['user'] . "' ");
 
-
-    $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' AND ca.E_Mail='" . $_SESSION['user'] . "' ");
-
-    while ($data = $table->fetch()) {
-        ?>
+        while ($data = $table->fetch()) {
+            ?>
         
-        <h1>Competences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
-        <h2>
-            Competence Numero : <?php echo $data['ID_Comp']; ?><br />
-            Diplome : <?php echo $data['Diplome']; ?><br />
-            Certification : <?php echo $data['Certification']; ?><br />
-            Annee d'experience : <?php echo $data['Annee_d_experience']; ?><br />
-            Permis : <?php echo $data['Permis']; ?><br />
-            Langue Primaire : <?php echo $data['Langue_Primaire'];?><br />
-            Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
-            Candidat Numero : <?php echo $data['ID_Info']; ?><br />
-        </h2>
-        <?php
-    }
-    
+            <h1>Competences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
+            <h2>
+                Competence Numero : <?php echo $data['ID_Comp']; ?><br />
+                Diplome : <?php echo $data['Diplome']; ?><br />
+                Certification : <?php echo $data['Certification']; ?><br />
+                Annee d'experience : <?php echo $data['Annee_d_experience']; ?><br />
+                Permis : <?php echo $data['Permis']; ?><br />
+                Langue Primaire : <?php echo $data['Langue_Primaire'];?><br />
+                Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
+                Candidat Numero : <?php echo $data['ID_Info']; ?><br />
+            </h2>
+            <?php
+        }
+    } 
 }
 
 function afficherClient () {

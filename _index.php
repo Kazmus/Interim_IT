@@ -21,7 +21,7 @@ session_start();
 					<p>NOUS VENONS DU FUTUR<br />
 					VOTRE MISSION EST NOTRE MISSION</p>
 				</div>
-				<video autoplay loop muted playsinline src="images/banner.mp4"></video>
+				<video  autoplay loop muted playsinline src="images/banner.mp4"></video>
 	</section>
 
 
@@ -47,13 +47,18 @@ session_start();
 	<aside>
 		<div id="tabComp">
 			<div class="comp">
-			<?php afficherCompetence();?>
-			<?php if(isset($_POST['submit'])) {
+
+				<div class="globe">
+			 	<?php if (!isset($_POST['submit']) && !isset($_POST['engager']) && !isset($_SESSION['id'])) { ?>
+				<video autoplay loop muted playsinline height="100%" width="100%" src="images/world.webm"></video>
+				<?php }
+				?></div><?php
+				afficherCompetence();
+		
 				afficherCandidat();
-			}?>
-			<?php if(isset($_POST['engager']) ) {
+		
 				afficherClient();
-			}?>
+			?>
 			</div>
 		</div>
 	</aside>
@@ -65,7 +70,7 @@ session_start();
 
 	<footer id="pied_page">
 
-	</footer> ">
+	</footer>
 		
 
 </body>

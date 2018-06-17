@@ -268,28 +268,27 @@ function afficherCompetence() {
 function afficherClient () {
 
     if (isset($_POST['engager'])) {
-    $idClient = $_POST['hiddenIdClient'];
-    }
+        $idClient = $_POST['hiddenIdClient'];
+        $bdd = dbConnexion();
 
-    $bdd = dbConnexion();
+        $table = $bdd->query("SELECT * FROM clients WHERE ID_Client='" . $idClient . "' ");
 
-    $table = $bdd->query("SELECT * FROM clients WHERE ID_Client='" . $idClient . "' ");
-
-    while ($data = $table->fetch()) {
-        ?>
-        <h2>
-            <?php echo "Client Numero : " . $data['ID_Client']; ?><br />
-            <?php echo "Nom : " . $data['Nom']; ?><br />
-            <?php echo "Prenom : " . $data['Prenom']; ?><br />
-            <?php echo "Type : " . $data['Type']; ?><br />
-            <?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")";?><br />
-            <?php echo "Tel : " . $data['Tel']; ?><br />
-            <?php echo "Gsm : " . $data['Gsm']; ?><br />
-            <?php echo "E-Mail : " . $data['E_Mail']; ?><br />
-            <?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
-        </h2>
-        <?php
-    }
+        while ($data = $table->fetch()) {
+            ?>
+            <h2>
+                <?php echo "Client Numero : " . $data['ID_Client']; ?><br />
+                <?php echo "Nom : " . $data['Nom']; ?><br />
+                <?php echo "Prenom : " . $data['Prenom']; ?><br />
+                <?php echo "Type : " . $data['Type']; ?><br />
+                <?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")";?><br />
+                <?php echo "Tel : " . $data['Tel']; ?><br />
+                <?php echo "Gsm : " . $data['Gsm']; ?><br />
+                <?php echo "E-Mail : " . $data['E_Mail']; ?><br />
+                <?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+            </h2>
+            <?php
+        }
+    }    
 }
 
 function afficherCandidat () {
@@ -297,8 +296,6 @@ function afficherCandidat () {
     if (isset($_POST['submit'])) {
     $idInfo = $_POST['hiddenIdCandidat'];
     $idMission = $_POST['hiddenIdMission'];
-    }
-
     $bdd = dbConnexion();
     $table = $bdd->query("SELECT * FROM candidats ca INNER JOIN competences co ON ca.ID_Info=co.ID_Info WHERE ca.ID_Info= '" . $idInfo . "' ");
     if ($table && $table->rowCount() == 1) {
@@ -339,8 +336,8 @@ function afficherCandidat () {
             <input class="button" name='submit' type="submit" value="Virer" />
             </form>
         </div><?php
+        }
     }
-
 }
 
 function checkAnneeExp ($expAnnee) {

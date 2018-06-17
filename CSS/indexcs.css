@@ -16,7 +16,7 @@
 
 #panneau {
     width: 50%;
-    height: 1000px;
+    height: 135%;
     float: right;
     display: flex;
     flex-direction: row;
@@ -93,6 +93,11 @@ div#image {
     height:50px;
     background-color:#6B0D0D;
     text-align: center;
+}
+
+.globe {
+  height: auto;
+  width: auto;
 }
 
 #banner {
@@ -356,3 +361,4 @@ div#image {
     opacity: 0; }
   body.is-preload #banner:before {
     opacity: 1; }
+}

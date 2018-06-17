@@ -35,7 +35,7 @@ function sessionClient () {
     if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
         $table = $bdd->query("SELECT ID_Client, Nom FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
         if ($table && $table->rowCount() == 1) {?>
-            <form action="_index.php"><p><input class="button" type="submit" value="Page Client"></p></form><?php
+            <form action="missionForm.php"><p><input class="button" type="submit" value="Ajouter Mission"></p></form><?php
         }
     }
 }

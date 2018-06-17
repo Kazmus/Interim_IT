@@ -25,6 +25,12 @@
     overflow: auto;
 }
 
+section#formulaire {
+  display: flex;
+  justify-content: center;
+
+}
+
 .buttonElem {
     margin: 5px 5px;
     background-color: black;
@@ -34,6 +40,13 @@
     background-color: #756d6f;
     color: white;
     text-align: center;
+    margin: 2px 1px;
+    padding: 1px 10px;
+}
+
+.element2 {
+    background-color: #756d6f;
+    color: white;
     margin: 2px 1px;
     padding: 1px 10px;
 }
@@ -81,6 +94,10 @@
 
 .button3 {
     background-color: #6B0D0D;
+}
+
+.buttonsForm {
+  text-align: center;
 }
 
 div#image {

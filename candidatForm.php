@@ -3,11 +3,14 @@
     <head>
         <meta charset="utf-8" />
         <title>Formulaire Candidat</title>
+        <link rel="stylesheet" href="CSS/indexcs.css"/>
     </head>
 
     <body>
-    	<form method="post" action="candidatProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
-
+        <section id="formulaire">
+            <div class="element2">
+    	   <form method="post" action="candidatProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
+        
     		<h1>Formulaire Candidats</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
     		<p><label> <strong>Nom : </strong> </label> <input id="Name" type="text" name="nomCandidat" placeholder="Nom Famille/Entreprise..."></p>
@@ -35,8 +38,10 @@
                 <label for="password"><strong> Mot-de-passe : </strong></label><input type="password" name="password" placeholder="Mot de passe...">
             </p>
     		<p><label for="webURL"> SiteWeb : </label> <input id="webURL" type="text" name="siteCandidat" placeholder="URL..."></p>
-    		<p><input type="submit" name="submit" value="Valider le formulaire"/>
-    		<input type="reset" value="Remettre à 0"></p>
+    		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>
+    		<input class="button button3" type="reset" value="Remettre à 0"></p>
+            </div>
+        </section>
     	</form>
     </body>      
 </html>

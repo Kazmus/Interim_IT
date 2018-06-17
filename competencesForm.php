@@ -4,9 +4,12 @@
     <head>
         <meta charset="utf-8" />
         <title>Formulaire Competence</title>
+        <link rel="stylesheet" href="CSS/indexcs.css"/>
     </head>
 
     <body>
+        <section id="formulaire">
+        <div class="element2">
     	<form method="post" action="competencesProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
 
     		<h1>Formulaire Competence</h1>
@@ -35,8 +38,10 @@
                 </select>
             </p>
 
-    		<p><input type="submit" name="submit" value="Valider le formulaire"/>
-    		<input type="reset" value="Remettre à 0"></p>
+    		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>
+    		<input class="button button3" type="reset" value="Remettre à 0"></p>
     	</form>
+        </div>
+        </section>
     </body>      
 </html>

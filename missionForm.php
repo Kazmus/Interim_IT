@@ -7,9 +7,12 @@ require "fonctions/fonctions.php";
     <head>
         <meta charset="utf-8" />
         <title>Formulaire Mission</title>
+        <link rel="stylesheet" href="CSS/indexcs.css"/>
     </head>
 
     <body>
+        <section id="formulaire">
+        <div class="element2">
     	<form method="post" action="missionProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
 
     		<h1>Formulaire Mission</h1>
@@ -42,8 +45,10 @@ require "fonctions/fonctions.php";
             <?php selectionAnneeExpMission(); ?>
             <p><label> Langue requise ? : </label><select name="langue"><?php selectionLangues(); ?></select></p>
 
-    		<p><input type="submit" name="submit" value="Valider le formulaire"/>
-    		<input type="reset" value="Remettre à 0"></p>
+    		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>
+    		<input class="button button3" type="reset" value="Remettre à 0"></p>
     	</form>
+    </div>
+    </section>
     </body>      
 </html>

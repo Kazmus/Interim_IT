@@ -24,7 +24,6 @@ session_start();
 				<video  autoplay loop muted playsinline src="images/banner.mp4"></video>
 	</section>
 
-
 	<nav>
 		<div class="menu">
 			<?php 
@@ -63,7 +62,6 @@ session_start();
 		</div>
 	</aside>
 	
-
 	<aside id="image">
 		<img  src="imageweb/im2.jpg" width="49%" height="524" alt="Photo de montagne" />	
 	</aside>
@@ -72,6 +70,5 @@ session_start();
 
 	</footer>
 		
-
 </body>
 </html>

@@ -77,6 +77,12 @@ try {
     $sql = $bdd->prepare('INSERT INTO exiger (ID_Mission, ID_Comp) VALUES (:idMission, :idComp)');
     $idMission = $bdd->lastInsertId();
 
+    if ($permis == 'Oui') {
+        # code...
+    } else {
+
+    }
+
     $table = $bdd->query("
         SELECT ID_Comp
         FROM competences 
@@ -95,7 +101,7 @@ try {
     }   
 
 echo "<h2>Mission creer avec success !</h2>";
-?><meta http-equiv="refresh" content="3; URL=pageClient.php"> <h2>Retour dans 3 secondes</h2> <?php
+?><meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
 
 } catch(Exception $e) {
     echo $e->getMessage();

@@ -40,7 +40,7 @@
 
 #tabComp {
     float: left;
-    display: block;
+    display: all;
     width: 49%;
     height: 80%;
     margin: 1px 1px;
@@ -53,6 +53,11 @@
     background-color:black;
     padding: 5px 5px;
     height: 97.50%;
+}
+
+.compButtons {
+    float: all;
+    display: flex;
 }
 
 .button {

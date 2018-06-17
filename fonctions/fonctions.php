@@ -304,7 +304,7 @@ function afficherCandidat () {
     if ($table && $table->rowCount() == 1) {
         $data = $table->fetch()
         ?>
-        <p>
+        <div>
             <?php echo "<h1>Candidat Numero : " . $data['ID_Info'] . "</h1>"; ?><br />
             <?php echo "Nom : " . $data['Nom']; ?><br />
             <?php echo "Prenom : " . $data['Prenom']; ?><br />
@@ -315,6 +315,9 @@ function afficherCandidat () {
             <?php echo "Gsm : " . $data['Gsm']; ?><br />
             <?php echo "E-Mail : " . $data['E_Mail']; ?><br />
             <?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+        </div>
+        
+        <div>
             <?php echo "<h2>Voici les differentes competences qu'il possede</h2>"?>
             <?php echo "Diplome : " . $data['Diplome']; ?><br />
             <?php echo "Certification : " . $data['Certification']; ?><br />
@@ -322,7 +325,9 @@ function afficherCandidat () {
             <?php echo "Permis : " . $data['Permis']; ?><br />
             <?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
             <?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
-        </p>
+        </div>
+
+        <div class="compButtons">
             <form method="post" action="engager.php">
             <input type="hidden" name="hiddenIdMission" value="<?php echo $idMission;?>" />
             <input type="hidden" name="hiddenIdInfo" value="<?php echo $data['ID_Info'];?>"/>
@@ -332,8 +337,10 @@ function afficherCandidat () {
             <input type="hidden" name="hiddenIdMission" value="<?php echo $idMission;?>" />
             <input type="hidden" name="hiddenIdInfo" value="<?php echo $data['ID_Info'];?>"/>
             <input class="button" name='submit' type="submit" value="Virer" />
-            </form><?php
+            </form>
+        </div><?php
     }
+
 }
 
 function checkAnneeExp ($expAnnee) {

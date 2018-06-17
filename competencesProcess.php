@@ -57,13 +57,22 @@ try {
 
     $anneeExpMis = checkAnneeExp($_POST['expAnnee']);
 
-    $tableMission = $bdd->query("
-        SELECT ID_Mission
-        FROM missions 
-        WHERE Annee_d_experience= '" . $anneeExpMis . "' 
-        AND Permis= '" . $permis . "' 
-        AND (Langue= '" . $primLang . "' OR Langue= '" . $secLang . "') "
-    );
+    if ($permis == 'Oui') {
+        $tableMission = $bdd->query("
+            SELECT ID_Mission
+            FROM missions 
+            WHERE Annee_d_experience= '" . $anneeExpMis . "' 
+            AND (Langue= '" . $primLang . "' OR Langue= '" . $secLang . "') "
+        );
+    } else {
+        $tableMission = $bdd->query("
+            SELECT ID_Mission
+            FROM missions 
+            WHERE Annee_d_experience= '" . $anneeExpMis . "' 
+            AND Permis= '" . $permis . "' 
+            AND (Langue= '" . $primLang . "' OR Langue= '" . $secLang . "') "
+        );
+    }
 
     
     while ($data = $tableMission->fetch()) {

@@ -78,18 +78,23 @@ try {
     $idMission = $bdd->lastInsertId();
 
     if ($permis == 'Oui') {
-        # code...
+
+        $table = $bdd->query("
+            SELECT ID_Comp
+            FROM competences 
+            WHERE (Annee_d_experience>='" . $anneeExpMin . "' AND Annee_d_experience<= '" . $anneeExpMax . "')  
+            AND (Langue_Primaire='" . $langue . "' OR Langue_Secondaire='" . $langue . "') "
+        );
+
     } else {
-
+        $table = $bdd->query("
+            SELECT ID_Comp
+            FROM competences 
+            WHERE (Annee_d_experience>='" . $anneeExpMin . "' AND Annee_d_experience<= '" . $anneeExpMax . "') 
+            AND Permis='" . $permis . "' 
+            AND (Langue_Primaire='" . $langue . "' OR Langue_Secondaire='" . $langue . "') "
+        );
     }
-
-    $table = $bdd->query("
-        SELECT ID_Comp
-        FROM competences 
-        WHERE (Annee_d_experience>='" . $anneeExpMin . "' AND Annee_d_experience<= '" . $anneeExpMax . "') 
-        AND Permis='" . $permis . "' 
-        AND (Langue_Primaire='" . $langue . "' OR Langue_Secondaire='" . $langue . "') "
-    );
 
     while ($data = $table->fetch()) {
         $idComp = $data['ID_Comp'];

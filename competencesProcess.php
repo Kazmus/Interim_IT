@@ -23,7 +23,6 @@ try {
         $idInfo = $data['ID_Info'];
         $deleteIdComp = $bdd->query("SELECT ID_Comp FROM exiger WHERE ID_Comp = '" . $data['ID_Comp'] . "' ");
         while ($deleteIdComp && $delete = $deleteIdComp->fetch()) {
-            echo $delete['ID_Comp'] . " ";
             $bdd->query("
             DELETE FROM exiger WHERE ID_Comp= '" . $delete['ID_Comp'] . "'
             ");
@@ -77,9 +76,9 @@ try {
 
         ));
     } 
-
-    echo "<h2>Competence ajouter avec succes !</h2>";
-    ?><meta http-equiv="refresh" content="3; URL=pageCandidat.php"> <h2>Retour dans 3 secondes</h2> <?php
+    ?>
+     <h2>Competence ajouter avec succes !</h2>
+    <meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
 
 } catch(Exception $e) {
 

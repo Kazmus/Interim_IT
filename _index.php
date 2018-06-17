@@ -18,11 +18,12 @@ session_start();
 	<section id="banner">
 				<div class="inner">
 					<h1><img  src="images/phenix3.png" width="300px" alt="Photo de montagne" />	</h1>
-					<p>WHERE ARE FROM THE FUTUR<br />
-					YOUR MISSION IS OURS</p>
+					<p>NOUS VENONS DU FUTUR<br />
+					VOTRE MISSION EST NOTRE MISSION</p>
 				</div>
 				<video autoplay loop muted playsinline src="images/banner.mp4"></video>
 	</section>
+
 
 	<nav>
 		<div class="menu">
@@ -44,19 +45,28 @@ session_start();
 	</section>
 
 	<aside>
-		<div id="comp">
+		<div id="tabComp">
+			<div class="comp">
 			<?php afficherCompetence();?>
+			<?php if(isset($_POST['submit'])) {
+				afficherCandidat();
+			}?>
+			<?php if(isset($_POST['engager']) ) {
+				afficherClient();
+			}?>
+			</div>
 		</div>
 	</aside>
 	
 
 	<aside id="image">
-		<img  src="imageweb/im2.jpg" width="50%" height="524" alt="Photo de montagne" />	
+		<img  src="imageweb/im2.jpg" width="49%" height="524" alt="Photo de montagne" />	
 	</aside>
 
-	<div id="pied_page">
+	<footer id="pied_page">
+
+	</footer> ">
 		
-	</div>
 
 </body>
 </html>

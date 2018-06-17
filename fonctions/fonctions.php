@@ -35,7 +35,7 @@ function sessionClient () {
     if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
         $table = $bdd->query("SELECT ID_Client, Nom FROM clients WHERE ID_Client =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
         if ($table && $table->rowCount() == 1) {?>
-            <form action="pageClient.php"><p><input class="button" type="submit" value="Page Client"></p></form><?php
+            <form action="_index.php"><p><input class="button" type="submit" value="Page Client"></p></form><?php
         }
     }
 }
@@ -44,8 +44,8 @@ function sessionCandidat () {
     $bdd = dbConnexion();
     if (isset($_SESSION['nom']) && isset($_SESSION['id'])) {
         $table = $bdd->query("SELECT ID_Info, Nom FROM candidats WHERE ID_Info =  '" . $_SESSION['id'] . "' AND E_Mail = '" . $_SESSION['user'] . "' ");
-        if ($table && $table->rowCount() == 1) {?>
-            <form action="pageCandidat.php"><p><input class="button" type="submit" value="Page Candidat"></p></form><?php
+        if ($table && $table->rowCount() == 1) {
+            checkComp();
         }
     }
 }
@@ -83,9 +83,9 @@ function checkComp () {
     $bdd = dbConnexion();
     $table = $bdd->query("SELECT ID_Info FROM competences WHERE ID_Info =  '" . $_SESSION['id'] . "' ");
     if ($table && $table->rowCount() == 1) {
-        ?><form action="competencesForm.php"><p><input type="submit" value="Modifier Competences"></p></form><?php
+        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Modifier Competences"></p></form><?php
     } else {
-        ?><form action="competencesForm.php"><p><input type="submit" value="Ajouter Competences"></p></form><?php
+        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Ajouter Competences"></p></form><?php
     }
 }
 
@@ -154,10 +154,10 @@ function afficherMission () {
 
                     if ($compCheck && $compCheck->rowCount() == 1) {
                         if ($tableEngager->rowCount() == 1) {
-                        ?><form method="post" action="clientAfficher.php">
+                        ?><form method="post" action="_index.php">
                             <input type="hidden" name="hiddenIdClient" value="<?php echo $data['ID_Client'];?>"/>
-                            <input class="button" name='submit' type="submit" value="Vous etes engager" /> Cliquez pour voir le client en detail
-                        </form><?php
+                            <input class="button button3" name='engager' type="submit" value="Vous etes engager" /> 
+                        </form> Cliquez pour voir le client en detail<?php
                         } else if ($tableVirer->rowCount() == 1) {
                           ?><input class="button button3" type="submit" value="Vous n'etes pas retenu"><?php
                         } else if ($tablePostuler->rowCount() == 1) {
@@ -205,7 +205,7 @@ function afficherMission () {
 
                 while ($dataMission = $autreTablePostuler->fetch()) {
                ?> 
-                    <form method="post" action="candidatAfficher.php">
+                    <form method="post" action="_index.php">
                         <input type="hidden" name="hiddenIdMission" value="<?php echo $dataMission['ID_Mission'];?>" />
                         <input type="hidden" name="hiddenIdCandidat" value="<?php echo $dataMission['ID_Info'];?>" />
                         <input class="button button3" name='submit' type="submit" value="<?php echo $dataMission['Nom'] . " " . $dataMission['Prenom'];?>" />
@@ -218,7 +218,7 @@ function afficherMission () {
 
                 while ($dataMission = $autreTableEngager->fetch()) {
                 ?>
-                    <form method="post" action="candidatAfficher.php">
+                    <form method="post" action="_index.php">
                         <input type="hidden" name="hiddenIdMission" value="<?php echo $dataMission['ID_Mission'];?>" />
                         <input type="hidden" name="hiddenIdCandidat" value="<?php echo $dataMission['ID_Info'];?>" />
                         <input class="button button3" name='submit' type="submit" value="<?php echo $dataMission['Nom'] . " " . $dataMission['Prenom'];?>" />
@@ -245,24 +245,96 @@ function afficherCompetence() {
     $bdd = dbConnexion();
 
 
-    $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' ");
+    $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' AND ca.E_Mail='" . $_SESSION['user'] . "' ");
 
     while ($data = $table->fetch()) {
         ?>
+        
+        <h1>Competences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
+        <h2>
+            Competence Numero : <?php echo $data['ID_Comp']; ?><br />
+            Diplome : <?php echo $data['Diplome']; ?><br />
+            Certification : <?php echo $data['Certification']; ?><br />
+            Annee d'experience : <?php echo $data['Annee_d_experience']; ?><br />
+            Permis : <?php echo $data['Permis']; ?><br />
+            Langue Primaire : <?php echo $data['Langue_Primaire'];?><br />
+            Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
+            Candidat Numero : <?php echo $data['ID_Info']; ?><br />
+        </h2>
+        <?php
+    }
+    
+}
+
+function afficherClient () {
+
+    if (isset($_POST['engager'])) {
+    $idClient = $_POST['hiddenIdClient'];
+    }
+
+    $bdd = dbConnexion();
+
+    $table = $bdd->query("SELECT * FROM clients WHERE ID_Client='" . $idClient . "' ");
+
+    while ($data = $table->fetch()) {
+        ?>
+        <h2>
+            <?php echo "Client Numero : " . $data['ID_Client']; ?><br />
+            <?php echo "Nom : " . $data['Nom']; ?><br />
+            <?php echo "Prenom : " . $data['Prenom']; ?><br />
+            <?php echo "Type : " . $data['Type']; ?><br />
+            <?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")";?><br />
+            <?php echo "Tel : " . $data['Tel']; ?><br />
+            <?php echo "Gsm : " . $data['Gsm']; ?><br />
+            <?php echo "E-Mail : " . $data['E_Mail']; ?><br />
+            <?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+        </h2>
+        <?php
+    }
+}
+
+function afficherCandidat () {
+
+    if (isset($_POST['submit'])) {
+    $idInfo = $_POST['hiddenIdCandidat'];
+    $idMission = $_POST['hiddenIdMission'];
+    }
+
+    $bdd = dbConnexion();
+    $table = $bdd->query("SELECT * FROM candidats ca INNER JOIN competences co ON ca.ID_Info=co.ID_Info WHERE ca.ID_Info= '" . $idInfo . "' ");
+    if ($table && $table->rowCount() == 1) {
+        $data = $table->fetch()
+        ?>
         <p>
-            <?php echo "<h2>Competences de  " . $data['Nom'] . " " . $data['Prenom'] . "</h2>"?>
-            <?php echo "Competence Numero : " . $data['ID_Comp']; ?><br />
+            <?php echo "<h1>Candidat Numero : " . $data['ID_Info'] . "</h1>"; ?><br />
+            <?php echo "Nom : " . $data['Nom']; ?><br />
+            <?php echo "Prenom : " . $data['Prenom']; ?><br />
+            <?php echo "Genre : " . $data['Genre']; ?><br />
+            <?php echo "Date de naissance : " . $data['Date_de_Naissance'] ?><br />
+            <?php echo "Adresse : " . $data['Adresse'] . " " . $data['Numero_Adresse'] . ", " . $data['Code_Postal'] . " " . $data['Ville'] . " (" . $data['Pays'] . ")"?><br />
+            <?php echo "Tel : " . $data['Tel']; ?><br />
+            <?php echo "Gsm : " . $data['Gsm']; ?><br />
+            <?php echo "E-Mail : " . $data['E_Mail']; ?><br />
+            <?php echo "SiteWeb : " . $data['SiteWeb']; ?><br />
+            <?php echo "<h2>Voici les differentes competences qu'il possede</h2>"?>
             <?php echo "Diplome : " . $data['Diplome']; ?><br />
             <?php echo "Certification : " . $data['Certification']; ?><br />
             <?php echo "Annee d'experience : " . $data['Annee_d_experience']; ?><br />
             <?php echo "Permis : " . $data['Permis']; ?><br />
             <?php echo "Langue Primaire : " . $data['Langue_Primaire'];?><br />
             <?php echo "Langue Secondaire : " . $data['Langue_Secondaire']; ?><br />
-            <?php echo "Candidat Numero : " . $data['ID_Info']; ?><br />
         </p>
-        <?php
+            <form method="post" action="engager.php">
+            <input type="hidden" name="hiddenIdMission" value="<?php echo $idMission;?>" />
+            <input type="hidden" name="hiddenIdInfo" value="<?php echo $data['ID_Info'];?>"/>
+            <input class="button" name='submit' type="submit" value="Engager" />
+            </form>
+            <form method="post" action="virer.php">
+            <input type="hidden" name="hiddenIdMission" value="<?php echo $idMission;?>" />
+            <input type="hidden" name="hiddenIdInfo" value="<?php echo $data['ID_Info'];?>"/>
+            <input class="button" name='submit' type="submit" value="Virer" />
+            </form><?php
     }
-    
 }
 
 function checkAnneeExp ($expAnnee) {

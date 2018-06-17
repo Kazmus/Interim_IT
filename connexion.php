@@ -1,3 +1,11 @@
+<head>
+	
+	<meta charset="utf-8" />
+	<title>Connexion</title>
+	<link rel="stylesheet" href="CSS/indexcs.css"/>
+
+</head>
+
 <?php 
 
 require 'fonctions/fonctions.php';
@@ -9,12 +17,18 @@ try {
 	$login = login();
 
 	if ($login == 2) {
-		?><meta http-equiv="refresh" content="4; URL=_index.php"> <h2>Redirection vers votre page(Client) dans 4 secondes</h2>  <img  src="images/portal.gif" width="100%" height="100%" alt="Loading" /> <?php
+		?><meta http-equiv="refresh" content="4; URL=_index.php"> <img  src="images/portal.gif" width="100%" height="100%" alt="Loading" /> <?php
 	} else if ($login == 1) {
-		?><meta http-equiv="refresh" content="4; URL=_index.php"> <h2>Redirection vers votre page(Candidat) dans 4 secondes</h2> <img  src="images/portal.gif" width="100%" height="100%" alt="Loading" />  <?php 
+		?><meta http-equiv="refresh" content="4; URL=_index.php"> <img  src="images/portal.gif" width="100%" height="100%" alt="Loading" />  <?php 
 
-	} else {
-		?><meta http-equiv="refresh" content="4; URL=_index.php"> <h2>Redirection vers la page d'acceuil dans 4 secondes</h2> <?php
+	} else {?>
+		<section id="redirection">
+             <div class="element2">
+				<h1> YOU SHALL NOT PASS</h1>
+                <meta http-equiv="refresh" content="4; URL=_index.php">
+                 <h2> Redirection vers la page d'acceuil dans 4 secondes </h2> 
+		   </div>
+        </section><?php
 	}
 	?>
 	

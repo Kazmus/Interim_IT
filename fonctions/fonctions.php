@@ -1,5 +1,12 @@
-<?php
 
+<head>
+    
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="CSS/indexcs.css"/>
+
+</head>
+
+<?php
 function dbConnexion() {
 	$db = new PDO('mysql:host=localhost;port=3307;dbname=interim_it;charset=utf8', 'root', '');
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,17 +21,17 @@ function checkConnex () {
             <input class="button" type="submit" name="submit" value="Connexion"></p></form>
 
         <form action="candidatForm.php">
-            <button class="button"> Insciption Candidat </button>
+            <button class="button"> Inscription Candidat </button>
         </form>
 
         <form action="clientForm.php">
-            <button class="button"> Insciption Client </button>
+            <button class="button"> Inscription Client </button>
         </form><?php 
 
     } else {?>
         <form action="deconnexion.php">
         <p>
-        <input class="button" type="submit" value="Deconnexion">
+        <input class="button" type="submit" value="Déconnexion">
         </p>
         </form><?php
     }
@@ -71,9 +78,7 @@ function login() {
                     $_SESSION['nom'] = $user['Nom'];
 					$table->closeCursor();
 					return 1;
-				} else {
-					echo "<h1> YOU SHALL NOT PASS</h1>";
-				}	
+				} 
 			} 
 		} 
 	} 
@@ -83,9 +88,9 @@ function checkComp () {
     $bdd = dbConnexion();
     $table = $bdd->query("SELECT ID_Info FROM competences WHERE ID_Info =  '" . $_SESSION['id'] . "' ");
     if ($table && $table->rowCount() == 1) {
-        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Modifier Competences"></p></form><?php
+        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Modifier Compétences"></p></form><?php
     } else {
-        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Ajouter Competences"></p></form><?php
+        ?><form action="competencesForm.php"><p><input class="button" type="submit" value="Ajouter Compétences"></p></form><?php
     }
 }
 
@@ -93,16 +98,16 @@ function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, 
     ?>
         <?php //echo '<div class="element">';?>
             <h2>
-                Mission numero :  <?php echo $idMission ?> <br />
-                Type de mission :  <?php echo $typeMission ?> <br />
+                Mission numéro :  <?php echo $idMission ?> <br />
+                Type de contrat :  <?php echo $typeMission ?> <br />
                 Titre :  <?php echo $titre ?> <br />
                 Lieu :  <?php echo $lieu ?> <br />
-                Date de debut :  <?php echo $dateDebut ?> <br />
+                Date de début :  <?php echo $dateDebut ?> <br />
                 Date de fin :  <?php echo $dateFin ?> <br />
                 Effectif requis :  <?php echo  $effectif ?> <br />
                 Description :  <?php echo $description ?> <br />
-                Remuneration :  <?php echo $remuneration ?> <br />
-                Reservation restante :  <?php echo $reservation ?> <br />
+                Rémunération :  <?php echo $remuneration ?> <br />
+                Réservation restante :  <?php echo $reservation ?> <br />
                 <?php if (isset($nomClient)) { ?>
                           Client :  <?php echo  $nomClient ?>
                   <?php } ?><br />
@@ -113,7 +118,7 @@ function affichageMission ($idMission, $typeMission, $titre, $lieu, $dateDebut, 
 
 function selectionAnneeExpMission () {
     ?>  
-    <p><label><strong> Annee d'experience ? : </strong></label>
+    <p><label><strong> Année d'expériences ? : </strong></label>
     <select name="anneeExp"> 
         <option value="Aucune Experience"> Aucune Experience
         <option value="1 ou 2 ans"> 1 ou 2 ans
@@ -169,7 +174,7 @@ function afficherMission () {
                         </form><?php
                         }
                     } else {
-                         ?><input class="button button3" type="submit" value="Vous devez ajouter vos competences pour postuler"><?php
+                         ?><input class="button button3" type="submit" value="Vous devez ajouter vos compétences pour postuler"><?php
                     }   echo '</div>';
                 }
             }
@@ -249,16 +254,16 @@ function afficherCompetence() {
         while ($data = $table->fetch()) {
             ?>
         
-            <h1>Competences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
+            <h1>Compétences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
             <h2>
-                Competence Numero : <?php echo $data['ID_Comp']; ?><br />
-                Diplome : <?php echo $data['Diplome']; ?><br />
-                Certification : <?php echo $data['Certification']; ?><br />
-                Annee d'experience : <?php echo $data['Annee_d_experience']; ?><br />
+                Compétence Numéro : <?php echo $data['ID_Comp']; ?><br />
+                Diplômes : <?php echo $data['Diplome']; ?><br />
+                Certifications : <?php echo $data['Certification']; ?><br />
+                Année d'expérience : <?php echo $data['Annee_d_experience']; ?><br />
                 Permis : <?php echo $data['Permis']; ?><br />
-                Langue Primaire : <?php echo $data['Langue_Primaire'];?><br />
+                Langue Maternelle : <?php echo $data['Langue_Primaire'];?><br />
                 Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
-                Candidat Numero : <?php echo $data['ID_Info']; ?><br />
+                Candidat Numéro : <?php echo $data['ID_Info']; ?><br />
             </h2>
             <?php
         }

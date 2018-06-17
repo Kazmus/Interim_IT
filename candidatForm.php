@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Formulaire Candidat</title>
+        <title>Formulaire du Candidat</title>
         <link rel="stylesheet" href="CSS/indexcs.css"/>
     </head>
 
@@ -11,10 +11,10 @@
             <div class="element2">
     	   <form method="post" action="candidatProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
         
-    		<h1>Formulaire Candidats</h1>
+    		<h1>Formulaire du Candidats</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
     		<p><label> <strong>Nom : </strong> </label> <input id="Name" type="text" name="nomCandidat" placeholder="Nom Famille/Entreprise..."></p>
-    		<p><label> <strong>Prenom : </strong> </label> <input id="Name" type="text" name="prenomCandidat" placeholder="Prenom..."></p>
+    		<p><label> <strong>Prénom : </strong> </label> <input id="Name" type="text" name="prenomCandidat" placeholder="Prenom..."></p>
             <br>
 
             <p>
@@ -31,13 +31,13 @@
     		
     		<?php selectionPays() ?>
     		
-    		<p> <label> Telephone : </label> <input id="Telephone" type="value" name="telCandidat" placeholder="Telephone...">
+    		<p> <label> Téléphone : </label> <input id="Telephone" type="value" name="telCandidat" placeholder="Telephone...">
                 <label> GSM : </label> <input id="GSM" type="value" name="gsmCandidat" placeholder="GSM..."></p>
     		<p>
                 <label for="E-Mail"><strong> E-Mail : </strong></label> <input id="E-Mail" type="text" name="emailCandidat" placeholder="E-Mail...">
                 <label for="password"><strong> Mot-de-passe : </strong></label><input type="password" name="password" placeholder="Mot de passe...">
             </p>
-    		<p><label for="webURL"> SiteWeb : </label> <input id="webURL" type="text" name="siteCandidat" placeholder="URL..."></p>
+    		<p><label for="webURL"> Site-Web : </label> <input id="webURL" type="text" name="siteCandidat" placeholder="URL..."></p>
     		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>
     		<input class="button button3" type="reset" value="Remettre à 0"></p>
             </div>

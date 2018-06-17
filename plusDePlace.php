@@ -10,7 +10,7 @@
 
 <section id="formulaire">
     <div class="element2">
-		<h2> Reservation FULL Veuillez retentez une autre fois </h2>
+		<h2> Réservation FULL Veuillez retenter une autre fois </h2>
 		<h2> Retour dans 3 secondes </h2>
 	</div>
 </section>

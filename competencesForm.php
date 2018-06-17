@@ -12,22 +12,22 @@
         <div class="element2">
     	<form method="post" action="competencesProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
 
-    		<h1>Formulaire Competence</h1>
+    		<h1>Formulaire Compétences</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
 
-    		<p><label> Diplome :  </label> <input type="text" name="diplome" placeholder="Diplome..."></p>
-    		<p><label> Certification :  </label> <input type="text" name="certif" placeholder="Certification..."></p>
+    		<p><label> Diplômes :  </label> <input type="text" name="diplome" placeholder="Diplome..."></p>
+    		<p><label> Certifications :  </label> <input type="text" name="certif" placeholder="Certification..."></p>
 
             <?php selectionAnneeExpComp(); ?>
 
             <p>
-                <strong> Vous avez le permis ? </strong>
+                <strong> Avez-vous le permis B ? </strong>
                 <input type="radio" name="radio" value="Oui"> Oui
                 <input type="radio" name="radio" value="Non"> Non<br>
             </p>
 
             <p>
-                <strong> Quelle est votre langue primaire ? </strong>
+                <strong> Quelle est votre langue maternelle ? </strong>
                 <select name="primaireLang">
                 <?php selectionLangues(); ?> 
                 </select>

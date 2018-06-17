@@ -6,7 +6,7 @@ require "fonctions/fonctions.php";
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Formulaire Mission</title>
+        <title>Formulaire de la Mission</title>
         <link rel="stylesheet" href="CSS/indexcs.css"/>
     </head>
 
@@ -15,28 +15,28 @@ require "fonctions/fonctions.php";
         <div class="element2">
     	<form method="post" action="missionProcess.php" name="Formulaire Client" autocomplete="on" enctype="">
 
-    		<h1>Formulaire Mission</h1>
+    		<h1>Formulaire de la Mission</h1>
             <p>Champs <strong>EN GRAS</strong> = obligatoires</p>
             
             <p>
                 <strong> Type de contrat </strong>
-                <input type="radio" name="type" value="CDD"> CDD
-                <input type="radio" name="type" value="CDI"> CDI<br>
+                <input type="radio" name="type" value="Court"> Court
+                <input type="radio" name="type" value="Long"> Long<br>
             </p>
 
             <p><label> <strong>Titre : </strong></label><input type="text" name="titre" placeholder="Nom de la mission..."></p>
             <p><label> <strong>Lieu : </strong></label><input type="text" name="lieu" placeholder="Lieu..."></p> 
 
-            <p><label> <strong>Date de debut : </strong></label> <input type="date" name="dateDebut" value="dateDebut"></p>
+            <p><label> <strong>Date de début : </strong></label> <input type="date" name="dateDebut" value="dateDebut"></p>
             <p><label> <strong>Date de fin : </strong></label><input type="date" name="dateFin" value="dateFin"></p> 
 
     		<p><label> <strong>Effectif requis : </strong></label> <input type="value" name="effectif" placeholder="Effectif requis..."></p>
     		<p><label> <strong>Description : </strong></label><br /><textarea type="text" name="description" placeholder="Description..."></textarea> </p> 
 
-            <p><label> <strong>Remuneration : </strong></label><input type="value" name="remuneration" placeholder="Remuneration..."></p>
-            <p><label> <strong>Reservation maximum : </strong></label><input type="value" name="reservMax" placeholder="Reservation maximum..."></p>
+            <p><label> <strong>Rémunération : </strong></label><input type="value" name="remuneration" placeholder="Remuneration..."></p>
+            <p><label> <strong>Réservation maximum : </strong></label><input type="value" name="reservMax" placeholder="Reservation maximum..."></p>
 
-            <h2>Competences requises</h2>
+            <h2>Compétences requises</h2>
             <p>
                 Permis obligatoire ? : 
                 <input type="radio" name="permis" value="Oui"> Oui

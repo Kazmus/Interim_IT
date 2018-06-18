@@ -249,26 +249,34 @@ function afficherCompetence() {
     
     $bdd = dbConnexion();
     if (isset($_SESSION['user']) && isset($_SESSION['id'])) {
-        $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' AND ca.E_Mail='" . $_SESSION['user'] . "' ");
+        $table = $bdd->query("SELECT ID_Comp FROM competences WHERE ID_Info='" . $_SESSION['id'] . "' ");
+        if ($table && $table->rowCount() == 1) {
+            $table = $bdd->query("SELECT * FROM competences co INNER JOIN candidats ca ON co.ID_Info=ca.ID_Info WHERE ca.ID_Info='" . $_SESSION['id'] . "' AND ca.E_Mail='" . $_SESSION['user'] . "' ");
 
-        while ($data = $table->fetch()) {
+            while ($data = $table->fetch()) {
             ?>
         
-            <h1>Compétences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
-            <h2>
-                Compétence Numéro : <?php echo $data['ID_Comp']; ?><br />
-                Diplômes : <?php echo $data['Diplome']; ?><br />
-                Certifications : <?php echo $data['Certification']; ?><br />
-                Année d'expérience : <?php echo $data['Annee_d_experience']; ?><br />
-                Permis : <?php echo $data['Permis']; ?><br />
-                Langue Maternelle : <?php echo $data['Langue_Primaire'];?><br />
-                Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
-                Candidat Numéro : <?php echo $data['ID_Info']; ?><br />
-            </h2>
+                <h1>Compétences de  <?php echo $data['Nom'] . " " .  $data['Prenom']; ?> </h1>
+                <h2>
+                    Compétence Numéro : <?php echo $data['ID_Comp']; ?><br />
+                    Diplômes : <?php echo $data['Diplome']; ?><br />
+                    Certifications : <?php echo $data['Certification']; ?><br />
+                    Année d'expérience : <?php echo $data['Annee_d_experience']; ?><br />
+                    Permis : <?php echo $data['Permis']; ?><br />
+                    Langue Maternelle : <?php echo $data['Langue_Primaire'];?><br />
+                    Langue Secondaire : <?php echo $data['Langue_Secondaire']; ?><br />
+                    Candidat Numéro : <?php echo $data['ID_Info']; ?><br />
+                </h2>
+                <?php
+            }
+        } else {
+            ?>
+                <h2> Veuillez rajouter vos compétences pour afficher les missions </h2>
             <?php
         }
-    } 
+    }     
 }
+
 
 function afficherClient () {
 

@@ -39,7 +39,7 @@
             </p>
     		<p><label for="webURL"> Site-Web : </label> <input id="webURL" type="text" name="siteCandidat" placeholder="URL..."></p>
     		<p class="buttonsForm"><input class="button button3" type="submit" name="submit" value="Valider le formulaire"/>
-    		<input class="button button3" type="reset" value="Remettre à 0"></p>
+    		<input class="button button3" type="" value="Retour"></p>
             </div>
         </section>
     	</form>

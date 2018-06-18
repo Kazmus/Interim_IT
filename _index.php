@@ -51,11 +51,13 @@ session_start();
 				<video autoplay loop muted playsinline height="100%" width="100%" src="images/world.webm"></video>
 				<?php }
 				?></div><?php
+
 				afficherCompetence();
 		
 				afficherCandidat();
 		
 				afficherClient();
+
 				?>
 			</div>
 		</div>

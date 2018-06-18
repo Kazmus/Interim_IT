@@ -108,7 +108,9 @@ try {
 <section id="redirection">
     <div class="element2">
         <h2>Mission creer avec success !</h2>
-?><meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> <?php
+        <meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> 
+    </div>
+</section><?php
 
 } catch(Exception $e) {
     echo $e->getMessage();

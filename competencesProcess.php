@@ -88,7 +88,7 @@ try {
     ?>
 <section id="redirection">
     <div class="element2">
-        <h2>Competence ajouter avec succes !</h2>
+        <h2>Compétence ajouter avec succes !</h2>
         <meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> 
     </div>
 </section><?php

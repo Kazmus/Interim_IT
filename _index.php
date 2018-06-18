@@ -52,8 +52,11 @@ session_start();
 				<?php }
 				?></div><?php
 
-				afficherCompetence();
-		
+				$true = checkUser();
+				if ($true == 1) {
+					afficherCompetence();
+				}
+				
 				afficherCandidat();
 		
 				afficherClient();

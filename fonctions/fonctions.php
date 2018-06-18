@@ -277,6 +277,15 @@ function afficherCompetence() {
     }     
 }
 
+function checkUser () {
+    $bdd = dbConnexion();
+
+    $table = $bdd->query("SELECT * FROM candidats WHERE ID_Info='" . $_SESSION['id'] . "' AND E_Mail='" . $_SESSION['user'] . "' ");
+    if ($table && $table->rowCount() == 1) {
+        return 1;
+    }
+}
+
 
 function afficherClient () {
 

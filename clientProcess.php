@@ -47,7 +47,7 @@ try {
         ?>
         <section id="redirection">
             <div class="element2">
-                <h2>Inscription reussie !</h2>
+                <h2>Inscription réussie !</h2>
                 <meta http-equiv="refresh" content="3; URL=_index.php"> <h2>Retour dans 3 secondes</h2> 
             </div>
         </section><?php
